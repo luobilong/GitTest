@@ -116,14 +116,14 @@
         if (respCode==1000) {
             NSDictionary *data=[json objectForKey:@"data"];
             NSArray *pastMagazineList=[data objectForKey:@"pastMagazineList"];
-            NSLog(@"%@",pastMagazineList);
+//            NSLog(@"%@",pastMagazineList);
             [magazines removeAllObjects];//清除上次的查询结果
             if(pastMagazineList.count>0){
                 for (int i=0; i<pastMagazineList.count; i++) {
                     NSDictionary *magazine=[pastMagazineList objectAtIndex:i];
                     MagazineModel *mm=[[MagazineModel alloc] init];
                     [mm setValuesForKeysWithDictionary:magazine];
-                    NSLog(@"%@",mm.id);
+//                    NSLog(@"%@",mm.id);
                     [magazines addObject:mm];
                 }
                 UITableView *tv=(UITableView*)[self.view viewWithTag:[year intValue]];
@@ -148,7 +148,7 @@
         // 得到回调之后,通常更新UI,是在主线程
         //        NSLog(@"%@", [NSThread currentThread]);
     } fail:^{
-        NSLog(@"请求失败");
+//        NSLog(@"请求失败");
     }];
 }
 
@@ -243,7 +243,7 @@
 {
     CGPoint point = [tap locationInView:_scrollV];
     int t = point.x/_scrollV.frame.size.width ;
-    NSLog(@"click %d",t);
+//    NSLog(@"click %d",t);
 //    MainListViewController *listVC = [[MainListViewController alloc]init];
 //    
 //    if(magazines.count>0){
@@ -255,12 +255,12 @@
 //    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%d in table",indexPath.row);
+//    NSLog(@"%d in table",indexPath.row);
     MainListViewController *listVC = [[MainListViewController alloc]init];
 
     if(magazines.count>0){
         MagazineModel *magazine=[magazines objectAtIndex:indexPath.row];
-        NSLog(@"%@",magazine.id);
+//        NSLog(@"%@",magazine.id);
         listVC.magazineId=magazine.id;
 
         [self.navigationController pushViewController:listVC animated:YES];

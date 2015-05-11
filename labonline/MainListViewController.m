@@ -195,7 +195,7 @@
 - (void)enterSearchViewController
 {
     // 搜索
-    NSLog(@"enterSearchViewController");
+//    NSLog(@"enterSearchViewController");
     SearchViewController *searchVC = [[SearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }

@@ -43,7 +43,6 @@
 + (void)removeUserPersonCacheWithType:(PathType)pathType
 {
     NSString *path = [PathManager getCatePathWithType:pathType];
-    NSLog(@"%@",path);
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
     NSEnumerator *e = [contents objectEnumerator];

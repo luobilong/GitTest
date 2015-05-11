@@ -31,21 +31,21 @@ static NetManager *netmanager = nil;
 - (void)requestDataWithUrlString:(NSString *)urlString
 {
     _userStop = NO;
-    NSLog(@"~~~~~~~~~~requestDataWithUrlString");
+//    NSLog(@"~~~~~~~~~~requestDataWithUrlString");
     NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFHTTPResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         NSLog(@"AFHttpRequestOperation成功");
+//         NSLog(@"AFHttpRequestOperation成功");
          // save Data
          self.downLoadData = operation.responseData;
          // 回调
          [self callBack];
      }failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         NSLog(@"AFHttpRequestOperation错误");
+//         NSLog(@"AFHttpRequestOperation错误");
          if (!_userStop)
          {
              _failError = error;
@@ -61,7 +61,6 @@ static NetManager *netmanager = nil;
 
 - (void)cancelRequestOperation
 {
-    NSLog(@"removeQue");
     _userStop = YES;
     [queue cancelAllOperations];
 }

@@ -130,16 +130,14 @@
 #pragma mark - 根据路径播放视频
 - (void)playerPlayVidioWithPath:(NSString *)path
 {
-    NSLog(@"%@",path);
     if (path.length == 0)
     {
-        NSLog(@"没有视频资源");
+//        NSLog(@"没有视频资源");
         return;
     }
     BOOL exit;
     if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&exit])
     {
-        NSLog(@"~~~~~~~~~~~~~~~~~");
         NSURL *vidioUrl = [NSURL fileURLWithPath:path];
         
         if (_playerController == nil)
@@ -154,7 +152,7 @@
     }
     else
     {
-        NSLog(@"#############################");
+//        NSLog(@"文件不存在");
     }
 }
 

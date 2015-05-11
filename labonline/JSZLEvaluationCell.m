@@ -33,7 +33,6 @@
     // 调整坐标
     NSInteger width = self.bounds.size.width;
     NSInteger height = cellHeight;
-    NSLog(@"%ld",height);
     _userImageButton.frame = CGRectMake(5, 10, 50, 50);
     _userNameLable.frame = CGRectMake(60, 5, width-70, 15);
     _timeLable.frame = CGRectMake(60, height-15, width-70, 10);

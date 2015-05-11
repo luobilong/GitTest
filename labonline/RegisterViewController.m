@@ -112,7 +112,7 @@
             // 得到回调之后,通常更新UI,是在主线程
             //        NSLog(@"%@", [NSThread currentThread]);
         } fail:^{
-            NSLog(@"请求失败");
+//            NSLog(@"请求失败");
         }];
     }
 }

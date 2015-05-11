@@ -72,7 +72,7 @@
 //            NSLog(@"%@",um);
             NSArray *keyArray = @[@"id",@"nickname",@"phone",@"email",@"icon"];
             NSDictionary *userInfo = [[json objectForKey:@"userinfo"] lastObject];
-            NSLog(@"%@",userInfo);
+//            NSLog(@"%@",userInfo);
             NSUserDefaults *userDe=[NSUserDefaults standardUserDefaults];
             [userDe setObject:username forKey:@"userName"];
             [userDe setObject:password forKey:@"password"];
@@ -95,7 +95,7 @@
         // 得到回调之后,通常更新UI,是在主线程
         //        NSLog(@"%@", [NSThread currentThread]);
     } fail:^{
-        NSLog(@"请求失败");
+//        NSLog(@"请求失败");
     }];
     
     

@@ -212,7 +212,7 @@
             // 文章列表
             MainListViewController *listVC = [[MainListViewController alloc]init];
             listVC.magazineId = [_detailDict objectForKey:@"id"];
-            NSLog(@"%@",[_detailDict objectForKey:@"id"]);
+//            NSLog(@"%@",[_detailDict objectForKey:@"id"]);
             [self.navigationController pushViewController:listVC animated:YES];
         }
             break;
@@ -236,7 +236,7 @@
 - (void)enterSearchVCFromDetail
 {
     // 搜索
-    NSLog(@"enterSearchViewController");
+//    NSLog(@"enterSearchViewController");
     SearchViewController *searchVC = [[SearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }

@@ -64,7 +64,7 @@
     self.view.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];
     
     NSArray *array = [[NSUserDefaults standardUserDefaults] objectForKey:@"MENUARRAY"];
-    NSLog(@"here :%@",array);
+//    NSLog(@"here :%@",array);
     leftArray = [[array objectAtIndex:_firstMenu] objectForKey:@"submenus"];
     rightArray = [[leftArray objectAtIndex:_secMenu] objectForKey:@"submenus"];
     self.title = [[[array objectAtIndex:_firstMenu] objectForKey:@"info"] objectForKey:@"classifyname"];
@@ -122,7 +122,7 @@
 
 - (void)oneMenu:(MenuButton *)btn
 {
-    NSLog(@"oneMenu");
+//    NSLog(@"oneMenu");
     [self changeButtonSelectedWithButtonTag:btn.tag];
     if (btn.selected)
     {
@@ -188,7 +188,7 @@
     if (tableView.tag == kLeftTabTag)
     {
         // left
-        NSLog(@"%@",[leftArray objectAtIndex:indexPath.row] );
+//        NSLog(@"%@",[leftArray objectAtIndex:indexPath.row] );
         cell.backgroundColor = [UIColor colorWithWhite:230/255.0 alpha:1];
         cell.titleLabel.text = [[[leftArray objectAtIndex:indexPath.row] objectForKey:@"info"] objectForKey:@"classifyname"];
         cell.titleLabel.font = [UIFont systemFontOfSize:kOneFontSize];
@@ -212,8 +212,7 @@
         cell.tag = indexPath.row + kSecondCellTag;
         if (indexPath.row == 0)
         {
-//            [self changeSelectedCell:cell andBaseTag:kSecondCellTag andSumCounts:rightArray.count];
-            cell.selectedLable.hidden = NO;
+            cell.titleLabel.textColor = [UIColor redColor];
         }
     }
     
@@ -233,7 +232,7 @@
     [self changeSelectedCell:cell andBaseTag:kSecondCellTag andSumCounts:rightArray.count];
     _thirdMenu = cell.tag-kSecondCellTag;
     NSString *classifyid = [[rightArray objectAtIndex:_thirdMenu] objectForKey:@"classifyid"];
-    NSLog(@"%@",classifyid);
+//    NSLog(@"%@",classifyid);
     EJTListViewController *eJTListVC = [[EJTListViewController alloc]init];
     eJTListVC.firstMenu = _firstMenu;
     eJTListVC.seconMenu = _secMenu;
@@ -250,12 +249,20 @@
         MenuCell *newCell = (MenuCell *)[self.view viewWithTag:i+tag];
         if (cell.tag == newCell.tag)
         {
-            newCell.selectedLable.hidden = NO;
+            if (tag == kSecondCellTag)
+            {
+                newCell.titleLabel.textColor = [UIColor redColor];
+            }
+            else
+            {
+                newCell.selectedLable.hidden = NO;
+            }
             newCell.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];
         }
         else
         {
             newCell.selectedLable.hidden = YES;
+            newCell.titleLabel.textColor = [UIColor colorWithWhite:128/255.0 alpha:1];
             if (tag == kFirstCellTag)
             {
                 newCell.backgroundColor = [UIColor colorWithWhite:230/255.0 alpha:1];

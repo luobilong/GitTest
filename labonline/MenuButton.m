@@ -12,12 +12,11 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = 2;
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = [UIColor colorWithRed:228/255.0 green:129/255.0 blue:138/255.0 alpha:1].CGColor;
     self.titleLabel.font = [UIFont systemFontOfSize:kOneFontSize];
-//    [self setTitleColor:[UIColor colorWithRed:217/255.0 green:0 blue:36/255.0 alpha:1] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageNamed:@"MenuNormal.png"] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageNamed:@"MenuSelected.png"] forState:UIControlStateSelected];
+    [self setTitleColor:[UIColor colorWithRed:217/255.0 green:0 blue:36/255.0 alpha:1] forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
 }
 
 /*

@@ -189,7 +189,7 @@
 - (void)enterSearchVC
 {
     // 搜索
-    NSLog(@"enterSearchViewController");
+//    NSLog(@"enterSearchViewController");
     SearchViewController *searchVC = [[SearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }
@@ -207,7 +207,7 @@
         [self.view addLoadingViewInSuperView:self.view andTarget:self];
     }
     NSString *urlStr = [NSString stringWithFormat:@"%@?classifyid=%@&currentPage=%d&pageSize=10",kEJTProductListUrl,_classifyid,_currentRequestPage];
-    NSLog(@"~~~~~~%@",urlStr);
+//    NSLog(@"~~~~~~%@",urlStr);
     [self requestWithUrl:urlStr];
 }
 
@@ -234,7 +234,7 @@
     if (netManager.downLoadData)
     {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
-        NSLog(@"%@",dict);
+//        NSLog(@"%@",dict);
         if ([[dict objectForKey:@"respCode"] integerValue] == 1000)
         {
             // 成功
@@ -251,10 +251,20 @@
                 [_mainArray addObject:dict];
             }
             [_mainTabV reloadData];
+            CGRect rect = _mainTabV.frame;
+            if (_mainArray.count*160+_loadingMoreView.frame.size.height<kScreenHeight-100)
+            {
+                rect.size.height = _mainArray.count*160+_loadingMoreView.frame.size.height;
+            }
+            else
+            {
+                rect.size.height = kScreenHeight-100;
+            }
+            _mainTabV.frame = rect;
         }
         else
         {
-            NSLog(@"%@",[dict objectForKey:@"remark"]);
+//            NSLog(@"%@",[dict objectForKey:@"remark"]);
         }
     }
     else
@@ -317,7 +327,6 @@
             cell = [[[NSBundle mainBundle]loadNibNamed:@"EJTListCell" owner:self options:0] lastObject];
         }
         NSDictionary *dict = [_mainArray objectAtIndex:indexPath.row];
-        NSLog(@"%@",dict);
         if ([[dict objectForKey:@"producticon"] length]>2)
         {
             [cell.imageV setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"producticon"]] placeholderImage:[UIImage imageNamed:@"wangqi.png"]];
@@ -368,7 +377,7 @@
                 break;
             case kRightTabTag:
             {
-                NSLog(@"%@",[_thirdMenuArray objectAtIndex:0]);
+//                NSLog(@"%@",[_thirdMenuArray objectAtIndex:0]);
                 cell.titleLabel.text = [[_thirdMenuArray objectAtIndex:indexPath.row] objectForKey:@"classifyname"];
                 cell.titleLabel.textColor = [UIColor colorWithWhite:128/255.0 alpha:1];
                 cell.titleLabel.font = [UIFont systemFontOfSize:kTwoFontSize];
@@ -382,7 +391,7 @@
                 }
                 if (indexPath.row == _thirdMenu)
                 {
-                    cell.selectedLable.hidden = NO;
+                    cell.titleLabel.textColor = [UIColor redColor];
                 }
             }
                 break;
@@ -505,6 +514,7 @@
 {
     [self changeSelectedCell:cell andBaseTag:kLeftCellTag andSumCounts:_seconMenudArray.count];
     _seconMenu = cell.tag - kLeftCellTag;
+    _thirdMenu = 0;
     
     _seconMenudArray = [[_firstMenuArray objectAtIndex:_firstMenu] objectForKey:@"submenus"];
     UIButton *btn = (UIButton *)[self.view viewWithTag:kMiddleButtonTag];
@@ -512,8 +522,8 @@
     _thirdMenuArray = [[_seconMenudArray objectAtIndex:_seconMenu] objectForKey:@"submenus"];
     _rightTabV.hidden = NO;
     [self.view bringSubviewToFront:_rightTabV];
-    [_rightTabV reloadData];
     [self changeTableViewFrameWithTag:_rightTabV.tag andCount:_thirdMenuArray.count];
+    [_rightTabV reloadData];
 }
 
 #pragma mark - 三级菜单点击事件回调
@@ -526,12 +536,13 @@
     _rightTabV.hidden = YES;
     UIButton *btn = (UIButton *)[self.view viewWithTag:kMiddleButtonTag];
     [btn setTitle:[[_thirdMenuArray objectAtIndex:_thirdMenu] objectForKey:@"classifyname"] forState:UIControlStateNormal];
+    [self changeOriginalWithButtonTag:kMiddleButtonTag];
     
     // 网络请求
     _currentRequestPage = 1;
     _classifyid = [[_thirdMenuArray objectAtIndex:_thirdMenu] objectForKey:@"classifyid"];
     [self startRequestMainDataWithAnimotion:YES];
-    [self changeButtonSelectedWithButtonTag:kMiddleButtonTag];
+    
     
     NSString *secondStr=[[[_seconMenudArray objectAtIndex:_seconMenu] objectForKey:@"info"] objectForKey:@"classifyname"];
     NSString *thirdStr=[[_thirdMenuArray objectAtIndex:_thirdMenu] objectForKey:@"classifyname"];
@@ -548,25 +559,7 @@
     btn.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
     [btn setTitleColor:[UIColor colorWithRed:217/255.0 green:0 blue:36/255.0 alpha:1] forState:UIControlStateNormal];
     _smallTabV.hidden = YES;
-    if (index == 0)
-    {
-        if (_mainArray.count)
-        {
-            [self timeSort];
-            _mainTabV.contentOffset = CGPointMake(0, 0);
-            [_mainTabV reloadData];
-        }
-        else
-        {
-            NSLog(@"没有数据");
-        }
-    }
-    else if (index == 1)
-    {
-        [self seenumberSort];
-        _mainTabV.contentOffset = CGPointMake(0, 0);
-        [_mainTabV reloadData];
-    }
+    [self changeOriginalWithButtonTag:kRightButtonTag];
     if (_mainArray.count > 0)
     {
         switch (index)
@@ -585,6 +578,7 @@
                 break;
         }
         [_mainTabV reloadData];
+        _mainTabV.contentOffset = CGPointMake(0, 0);
     }
     else
     {
@@ -603,7 +597,7 @@
     [btn setTitle:titl forState:UIControlStateNormal];
     self.title = titl;
     _smallTabV.hidden = YES;
-    
+    [self changeOriginalWithButtonTag:kLeftButtonTag];
     _seconMenudArray = [[_firstMenuArray objectAtIndex:_firstMenu] objectForKey:@"submenus"];
     UIButton *btn2 = (UIButton *)[self.view viewWithTag:kMiddleButtonTag];
     [btn2 setTitle:[[[_seconMenudArray objectAtIndex:0] objectForKey:@"info"] objectForKey:@"classifyname"] forState:UIControlStateNormal];
@@ -611,7 +605,6 @@
     _currentRequestPage = 1;
     _classifyid = [[[_firstMenuArray objectAtIndex:_firstMenu] objectForKey:@"info"] objectForKey:@"classifyid"];
     [self startRequestMainDataWithAnimotion:YES];
-    [self changeButtonSelectedWithButtonTag:kLeftButtonTag];
 }
 
 #pragma mark - 改变cell选中状态（任何时刻只能有一个被选中）
@@ -650,74 +643,90 @@
 
     NSUserDefaults *defauls = [NSUserDefaults standardUserDefaults];
     _firstMenuArray = [defauls objectForKey:@"MENUARRAY"];
-    NSLog(@"%@",_firstMenuArray);
+//    NSLog(@"%@",_firstMenuArray);
     _seconMenudArray = [[[defauls objectForKey:@"MENUARRAY"] objectAtIndex:_firstMenu] objectForKey:@"submenus"];
-    NSLog(@"%@",_seconMenudArray);
+//    NSLog(@"%@",_seconMenudArray);
     _thirdMenuArray = [[_seconMenudArray objectAtIndex:_seconMenu] objectForKey:@"submenus"];
-    NSLog(@"%@",_thirdMenuArray);
+//    NSLog(@"%@",_thirdMenuArray);
 }
 
 #pragma mark - 触空白收起菜单
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"touchesBegan");
+//    NSLog(@"touchesBegan");
     _smallTabV.hidden = YES;
     _leftTabV.hidden = YES;
     _rightTabV.hidden = YES;
-    
+    [self changeOriginalWithButtonTag:kLeftButtonTag];
+    [self changeOriginalWithButtonTag:kMiddleButtonTag];
+    [self changeOriginalWithButtonTag:kRightButtonTag];
 }
 
 
 #pragma mark - 菜单按钮被点击
 - (void)buttonClicked:(MenuButton *)btn
 {
-    [self changeButtonSelectedWithButtonTag:btn.tag];
-
-    switch (btn.tag)
+    if (btn.selected)
     {
-        case kLeftButtonTag:
-        {
-            _paiXu = NO;
-            [self.view bringSubviewToFront:_smallTabV];
-            _smallTabV.hidden = NO;
-            [_smallTabV reloadData];
-            [self changeTableViewFrameWithTag:_smallTabV.tag andCount:_firstMenuArray.count];
-            [self makeTableViewAlone:NO];
-        }
-            break;
-        case kLeftButtonTag+1:
-        {
-            NSLog(@"产品分类");
-            [self makeTableViewAlone:YES];
-            _seconMenudArray = [[_firstMenuArray objectAtIndex:_firstMenu] objectForKey:@"submenus"];
-            [self changeTableViewFrameWithTag:_leftTabV.tag andCount:_seconMenudArray.count];
-            if (!(_seconMenu < _seconMenudArray.count))
-            {
-                _seconMenu = 0;
-            }
-            _thirdMenuArray = [[_seconMenudArray objectAtIndex:_seconMenu] objectForKey:@"submenus"];
-            [self.view bringSubviewToFront:_leftTabV];
-            _leftTabV.hidden = NO;
-            [_leftTabV reloadData];
-            [self.view bringSubviewToFront:_rightTabV];
-            _rightTabV.hidden = NO;
-            [_rightTabV reloadData];
-            
-        }
-            break;
-        case kLeftButtonTag+2:
-        {
-            [self makeTableViewAlone:NO];
-            _paiXu = YES;
-            [self.view bringSubviewToFront:_smallTabV];
-             _smallTabV.hidden = NO;
-            [_smallTabV reloadData];
-            [self changeTableViewFrameWithTag:_smallTabV.tag andCount:_pXrray.count];
-        }
-            break;
-        default:
-            break;
+        btn.selected = NO;
+        _smallTabV.hidden = YES;
+        _leftTabV.hidden = YES;
+        _rightTabV.hidden = YES;
     }
+    else
+    {
+        [self changeButtonSelectedWithButtonTag:btn.tag];
+        switch (btn.tag)
+        {
+            case kLeftButtonTag:
+            {
+                _paiXu = NO;
+                [self.view bringSubviewToFront:_smallTabV];
+                _smallTabV.hidden = NO;
+                [_smallTabV reloadData];
+                [self changeTableViewFrameWithTag:_smallTabV.tag andCount:_firstMenuArray.count];
+                [self makeTableViewAlone:NO];
+            }
+                break;
+            case kLeftButtonTag+1:
+            {
+//                NSLog(@"产品分类");
+                [self makeTableViewAlone:YES];
+                _seconMenudArray = [[_firstMenuArray objectAtIndex:_firstMenu] objectForKey:@"submenus"];
+                [self changeTableViewFrameWithTag:_leftTabV.tag andCount:_seconMenudArray.count];
+                if (!(_seconMenu < _seconMenudArray.count))
+                {
+                    _seconMenu = 0;
+                }
+                _thirdMenuArray = [[_seconMenudArray objectAtIndex:_seconMenu] objectForKey:@"submenus"];
+                [self.view bringSubviewToFront:_leftTabV];
+                _leftTabV.hidden = NO;
+                [_leftTabV reloadData];
+                [self.view bringSubviewToFront:_rightTabV];
+                _rightTabV.hidden = NO;
+                [_rightTabV reloadData];
+            }
+                break;
+            case kLeftButtonTag+2:
+            {
+                [self makeTableViewAlone:NO];
+                _paiXu = YES;
+                [self.view bringSubviewToFront:_smallTabV];
+                _smallTabV.hidden = NO;
+                [_smallTabV reloadData];
+                [self changeTableViewFrameWithTag:_smallTabV.tag andCount:_pXrray.count];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)changeOriginalWithButtonTag:(NSInteger)buttonTag
+{
+    UIButton *btn = (UIButton *)[self.view viewWithTag:buttonTag];
+    btn.selected = NO;
 }
 
 #pragma mark - 改变按钮选中状态
@@ -729,13 +738,11 @@
         UIButton *newBtn = (UIButton *)[self.view viewWithTag:i+kLeftButtonTag];
         if (btn.tag == newBtn.tag)
         {
-            [newBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [newBtn setBackgroundColor:[UIColor colorWithRed:217/255.0 green:0 blue:36/255.0 alpha:1]];
+            newBtn.selected = YES;
         }
         else
         {
-            [newBtn setTitleColor:[UIColor colorWithRed:217/255.0 green:0 blue:36/255.0 alpha:1] forState:UIControlStateNormal];
-            [newBtn setBackgroundColor:[UIColor whiteColor]];
+            newBtn.selected = NO;
         }
     }
 }
@@ -834,7 +841,7 @@
             {
                 NSDictionary *dict2 = [_mainArray objectAtIndex:j];
                 NSInteger seenum2 = [[dict2 objectForKey:@"seenum"] integerValue];
-                if (seenum1<seenum2)
+                if (seenum1<=seenum2)
                 {
                     [self exchangeObjectIndex:i andIndex:j];
                 }
@@ -842,7 +849,6 @@
         }
 
     }
-
 }
 
 #pragma mark - 左侧菜单

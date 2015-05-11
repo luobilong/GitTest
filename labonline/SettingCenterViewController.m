@@ -28,6 +28,8 @@
 @end
 
 @implementation SettingCenterViewController
+#define kShareViewTag 456
+
 
 - (void)viewDidLoad
 {
@@ -65,7 +67,7 @@
 }
 - (void)makeUpDataArray
 {
-    NSArray *textArray = @[@"清除缓存",@"分享给好友",@"版本更新",@"用户反馈",@"关于我们"];
+    NSArray *textArray = @[@"清除缓存",@"分享给好友",@"用户反馈",@"关于我们"];
     NSArray *imageNameArray = @[@"removeCache.png",@"share.png",@"versionUpdate.png",@"UserFeedBack.png",@"about.png"];
     _listArray = [[NSMutableArray alloc]init];
     for (int i = 0; i < textArray.count; i ++)
@@ -121,19 +123,19 @@
             [self createShareView];
         }
             break;
+//        case 2:
+//        {
+//             // 版本更新
+//        }
+//            break;
         case 2:
-        {
-             // 版本更新
-        }
-            break;
-        case 3:
         {
             //用户反馈
             UserCallBackViewController *callBackVC = [[UserCallBackViewController alloc]init];
             [self.navigationController pushViewController:callBackVC animated:YES];
         }
             break;
-        case 4:
+        case 3:
         {
             // 关于我们
             AboutMeViewController *aboutMeVC = [[AboutMeViewController alloc]init];
@@ -149,18 +151,29 @@
 - (void)createShareView
 {
     UIView *darkV = [[UIView alloc]initWithFrame:self.view.bounds];
-    darkV.backgroundColor = [UIColor colorWithWhite:14/255.0 alpha:0.5];
+    darkV.backgroundColor = [UIColor colorWithRed:50/255.0 green:75/255.0 blue:138/255.0 alpha:0.2];
     darkV.tag = 11223344;
     [self.view addSubview:darkV];
+    
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapDarkView:)];
+    [darkV addGestureRecognizer:tapGes];
     
     ShareView *shareV = [[[NSBundle mainBundle]loadNibNamed:@"ShareView" owner:self options:0] lastObject];
     shareV.frame = CGRectMake(0, kScreenHeight-220, kScreenWidth, 220);
     shareV.backgroundColor = [UIColor colorWithWhite:248/255.0 alpha:1];
     shareV.target = self;
+    shareV.tag = kShareViewTag;
     shareV.action = @selector(shareCallBack:);
     shareV.shareTitle=@"临床实验室APP";
     shareV.shareUrl=@"http://www.ivdchina.com.cn/labonlineapp/index.htm";
     [self.view addSubview:shareV];
+}
+
+- (void)tapDarkView:(UITapGestureRecognizer *)tap
+{
+    [tap.view removeFromSuperview];
+    ShareView *shareV = (ShareView *)[self.view viewWithTag:kShareViewTag];
+    [shareV removeFromSuperview];
 }
 
 - (void)shareCallBack:(id)sender
@@ -181,10 +194,10 @@
 -(void)mailComposeController:(MFMailComposeViewController *)controller
          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if (result) {
-        NSLog(@"Result : %d",result);
+//        NSLog(@"Result : %d",result);
     }
     if (error) {
-        NSLog(@"Error : %@",error);
+//        NSLog(@"Error : %@",error);
     }
     [self dismissModalViewControllerAnimated:YES];
     
@@ -199,12 +212,16 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (_removeCache)
+    if (buttonIndex == 0)
     {
-        _removeCache = NO;
-        [RemoveCacheManager removeUserAllLocalCacheFile];
-        [self createAlertViewWithTitle:@"提示" Message:@"清除成功" cancelTitle:@"确定" otherTitle:nil];
+        if (_removeCache)
+        {
+            _removeCache = NO;
+            [RemoveCacheManager removeUserAllLocalCacheFile];
+            [self createAlertViewWithTitle:@"提示" Message:@"清除成功" cancelTitle:@"确定" otherTitle:nil];
+        }
     }
+    
 }
 
 

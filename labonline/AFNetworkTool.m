@@ -24,7 +24,7 @@
     
     // 检测网络连接的单例,网络变化时的回调方法
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        NSLog(@"%ld", status);
+//        NSLog(@"%ld", status);
     }];
 }
 
@@ -41,7 +41,7 @@
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+//        NSLog(@"%@", error);
         if (fail) {
             fail();
         }
@@ -65,7 +65,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+//        NSLog(@"%@", error);
         if (fail) {
             fail();
         }
@@ -86,7 +86,7 @@
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
+//        NSLog(@"%@", error);
         if (fail) {
             fail();
         }

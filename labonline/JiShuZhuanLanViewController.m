@@ -182,7 +182,7 @@
 {
     NSArray *subArr = [[_articleListArray objectAtIndex:indexPath.row] objectForKey:@"article"];
     NSInteger count = (subArr.count>5)?5:subArr.count;
-    NSLog(@"%ld",count);
+//    NSLog(@"%ld",count);
     return kCellBaseHeight + kCellAloneArticalHeight*count;
 }
 

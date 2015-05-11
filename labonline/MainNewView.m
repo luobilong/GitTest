@@ -29,6 +29,10 @@
     _magazineTitleLable.textColor = [UIColor colorWithWhite:86/255.0 alpha:1];
     _qiCiLable.textColor = [UIColor colorWithWhite:177/255.0 alpha:1];
     _desLable.textColor = [UIColor colorWithWhite:177/255.0 alpha:1];
+    _magazineImageV.layer.masksToBounds = YES;
+    _magazineImageV.layer.cornerRadius = 3;
+    _magazineImageV.layer.borderColor = [UIColor colorWithWhite:235/255.0 alpha:1].CGColor;
+    _magazineImageV.layer.borderWidth = 1;
 }
 
 - (void)setMainMagazineDict:(NSDictionary *)mainMagazineDict
@@ -60,6 +64,7 @@
         btn.tag = kImageButtonTag + i;
         [btn setFrame:CGRectMake(10+i*btnWidth, hei-btnHeight-5, btnWidth-3, btnHeight)];
         [btn setImageWithURL:[NSURL URLWithString:[_imageDataArray objectAtIndex:i]]];
+        NSLog(@"%@",_imageDataArray);
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 1;

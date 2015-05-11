@@ -21,14 +21,14 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    NSLog(@"setSelected");
+//    NSLog(@"setSelected");
     
     // Configure the view for the selected state
 }
 
 - (IBAction)btnClicked:(id)sender
 {
-    NSLog(@"12345566");
+//    NSLog(@"12345566");
     if ([_target respondsToSelector:_action])
     {
         [_target performSelector:_action withObject:self afterDelay:0];

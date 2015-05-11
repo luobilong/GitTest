@@ -87,7 +87,7 @@
     {
         if ([textField.text length] == 11)
         {
-            NSLog(@"%@",textField.text);
+//            NSLog(@"%@",textField.text);
             _commit = YES;
         }
         else

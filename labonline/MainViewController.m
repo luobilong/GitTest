@@ -229,7 +229,7 @@
 
 #pragma mark - 产品点击事件
 - (void)productMethod:(NSDictionary *)proDic{
-    NSLog(@"%@",proDic);
+//    NSLog(@"%@",proDic);
     ProductDetailViewController *proDV=[[ProductDetailViewController alloc] init];
     proDV.proDetail=proDic;
     [self.navigationController pushViewController:proDV animated:YES];
@@ -265,7 +265,7 @@
         [self.view removeLoadingVIewInView:self.view andTarget:self];
     }
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
-    NSLog(@"@@@@@@@:%@",netManager.downLoadData);
+//    NSLog(@"@@@@@@@:%@",netManager.downLoadData);
     
     if ([dict objectForKey:@"productclassifyList"])  _requestEJTCate= YES;
     else _requestEJTCate= NO;
@@ -332,13 +332,10 @@
     _jSZLCateV.cateDataArray = jSZLArray;
     
     // e检通数据
-    NSArray *ejtArray = [dict objectForKey:@"productList"];//@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""]; //;
-//    NSInteger hangCounts = ejtArray.count%9?ejtArray.count/9+1:ejtArray.count/9;
-//    NSLog(@"~~~~~%@",ejtArray);
+    NSArray *ejtArray = [dict objectForKey:@"productList"];
     //e检通View frame
     CGRect ejtRect = eJTView.frame;
     ejtRect.origin.y = _currentTopY + jSZLHeight +10;
-//    ejtRect.size.height = kProductHeadHeight+kProductHangHeight*hangCounts;
     eJTView.frame = ejtRect;
     eJTView.productInfoArray = ejtArray;
     
@@ -378,15 +375,25 @@
 #pragma mark - 图片轮播-->进入详情
 - (void)pictureShowMethod:(PictureShowView *)pictureShowV
 {
-    NSDictionary *dict = [[pictureShowV.imageInfoArray objectAtIndex:pictureShowV.imageIndex] objectForKey:@"articleinfo"];
-    JiShuZhuanLanDetailViewController *detailVC = [[JiShuZhuanLanDetailViewController alloc]init];
-    detailVC.articalDic = dict;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    NSDictionary *currentDict = [pictureShowV.imageInfoArray objectAtIndex:pictureShowV.imageIndex];
+    if ((![[currentDict objectForKey:@"articleinfo"] isEqual:[NSNull null]])&&[currentDict objectForKey:@"articleinfo"])
+    {
+        JiShuZhuanLanDetailViewController *detailVC = [[JiShuZhuanLanDetailViewController alloc]init];
+        detailVC.articalDic = [currentDict objectForKey:@"articleinfo"];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
+    else if ((![[currentDict objectForKey:@"productpic"] isEqual:[NSNull null]])&&[currentDict objectForKey:@"productpic"])
+    {
+        ProductDetailViewController *proDV=[[ProductDetailViewController alloc] init];
+        proDV.proDetail=[currentDict objectForKey:@"productpic"];
+        [self.navigationController pushViewController:proDV animated:YES];
+    }
+    
 }
 #pragma mark - 进入技术专栏界面
 - (void)enterJSZLVireController:(JSZLCateView *)jSZLCateView
 {
-    NSLog(@"进入技术专栏界面");
+//    NSLog(@"进入技术专栏界面");
     if (jSZLCateView.enterMoreVC)
     {
         // 更多界面
@@ -407,7 +414,7 @@
 - (void)enterSearchVC
 {
     // 搜索
-    NSLog(@"enterSearchViewController");
+//    NSLog(@"enterSearchViewController");
     SearchViewController *searchVC = [[SearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }

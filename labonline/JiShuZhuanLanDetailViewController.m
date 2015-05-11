@@ -55,6 +55,16 @@
 {
     _articalDic = articalDic;
     _articalID = [_articalDic objectForKey:@"articleid"];
+    // 图片轮播文章id字段为id 其他页面文章id字段为articleid 在此加以判断
+    if ([_articalDic objectForKey:@"articleid"])
+    {
+        _articalID = [_articalDic objectForKey:@"articleid"];
+    }
+    else
+    {
+        _articalID = [_articalDic objectForKey:@"id"];
+    }
+    NSLog(@"~~~~~~%@",_articalDic);
     if ([[_articalDic objectForKey:@"urlpdf"] length]>5)
     {
         _isPDF = YES;
@@ -218,7 +228,7 @@
 #pragma mark - 拖拽
 - (void) handlePan: (UIPanGestureRecognizer *)rec{
     CGPoint point = [rec translationInView:self.view];
-    NSLog(@"%f,%f",point.x,point.y);
+//    NSLog(@"%f,%f",point.x,point.y);
     rec.view.center = CGPointMake(rec.view.center.x + point.x, rec.view.center.y + point.y);
     [rec setTranslation:CGPointMake(0, 0) inView:self.view];
 }
@@ -373,6 +383,7 @@
                 userid = [defaults objectForKey:@"id"];
                 _collection = YES;
                 NSString *urlStr = [NSString stringWithFormat:@"%@?userid=%@&articleid=%@",kCollectionUrl,userid,_articalID];
+                NSLog(@"%@",urlStr);
                 [self requestMainDataWithURLString:urlStr];
                 [self.view addLoadingViewInSuperView:self.view andTarget:self];
             }
@@ -463,10 +474,10 @@
 -(void)mailComposeController:(MFMailComposeViewController *)controller
          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if (result) {
-        NSLog(@"Result : %d",result);
+//        NSLog(@"Result : %d",result);
     }
     if (error) {
-        NSLog(@"Error : %@",error);
+//        NSLog(@"Error : %@",error);
     }
     [self dismissModalViewControllerAnimated:YES];
     

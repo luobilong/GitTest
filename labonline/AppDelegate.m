@@ -13,6 +13,7 @@
 #import "TencentOpenAPI/TencentOAuth.h"
 
 
+
 @interface AppDelegate ()
 
 @end
@@ -29,6 +30,7 @@ NSString *const COCIM_INTERFACE_PAST_MAGAZINE=@"http://123.57.155.106:8080/labon
     // Override point for customization after application launch.
     
     
+    NSLog(@"123456780");
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     

@@ -34,7 +34,6 @@
     BOOL bCreateDir = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
     if(!bCreateDir)
     {
-        NSLog(@"创建路径失败");
         return NO;
     }
     return YES;

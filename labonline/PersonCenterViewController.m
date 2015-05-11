@@ -189,7 +189,6 @@
         case 0:
         {
             // 我的文章
-            NSLog(@"我的文章");
             MyMagazineViewController *magazineVC = [[MyMagazineViewController alloc]init];
             [self.navigationController pushViewController:magazineVC animated:YES];
         }
@@ -197,7 +196,6 @@
         case 1:
         {
             // 我的评论
-            NSLog(@"我的评论");
             MyCommentViewController *myCommonVC = [[MyCommentViewController alloc]init];
             myCommonVC.userid = _userId;
             [self.navigationController pushViewController:myCommonVC animated:YES];
@@ -206,7 +204,6 @@
         case 2:
         {
             // 我的收藏
-            NSLog(@"我的收藏");
             MyCollectionViewController *myCollectionVC = [[MyCollectionViewController alloc]init];
             myCollectionVC.userId = _userId;
             [self.navigationController pushViewController:myCollectionVC animated:YES];
@@ -215,7 +212,6 @@
         case 3:
         {
             // 离线视频
-            NSLog(@"离线视频");
             OffLIneVidioViewController *offLineVidioVC = [[OffLIneVidioViewController alloc]init];
             [self.navigationController pushViewController:offLineVidioVC animated:YES];
             
@@ -243,7 +239,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         if ([defaults objectForKey:@"userName"]&&[defaults objectForKey:@"password"])
         {
-            NSLog(@"%@\n%@",[defaults objectForKey:@"userName"],[defaults objectForKey:@"password"]);
+//            NSLog(@"%@\n%@",[defaults objectForKey:@"userName"],[defaults objectForKey:@"password"]);
             NSDictionary *dic = @{@"username":[defaults objectForKey:@"userName"],@"password":[defaults objectForKey:@"password"]};
             [AFNetworkTool postJSONWithUrl:COCIM_INTERFACE_LOGIN parameters:dic success:^(id responseObject)
             {
@@ -301,8 +297,6 @@
 - (void)enterSearchViewController
 {
     // 搜索
-    // 搜索
-    NSLog(@"enterSearchViewController");
     SearchViewController *searchVC = [[SearchViewController alloc]init];
     [self.navigationController pushViewController:searchVC animated:YES];
 }

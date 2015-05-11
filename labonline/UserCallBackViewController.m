@@ -14,6 +14,7 @@
 {
     UITextView *textV;
     BOOL _commitSuccess;
+    UILabel *markLab;
 }
 @end
 
@@ -53,12 +54,12 @@
     textV.layer.borderColor = [UIColor colorWithWhite:230/255.0 alpha:1].CGColor;
     textV.layer.borderWidth = 1;
     textV.scrollEnabled = YES;
-    textV.text = @"提点小建议";
+//    textV.text = @"提点小建议";
     textV.textColor = [UIColor colorWithWhite:157/255.0 alpha:1];
     [self.view addSubview:textV];
     
-    UILabel *markLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 5+kTextViewHeight, kScreenWidth-20, kMarkLableHeight)];
-    markLab.text = @"不超过500字";
+    markLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 5+kTextViewHeight, kScreenWidth-20, kMarkLableHeight)];
+    markLab.text = @"不超过500字符";
     markLab.textAlignment = NSTextAlignmentRight;
     markLab.font = [UIFont systemFontOfSize:kThreeFontSize];
     markLab.textColor = [UIColor colorWithWhite:150/255.0 alpha:1];
@@ -113,6 +114,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    markLab.text = [NSString stringWithFormat:@"%d/500",[textView.text length]];
     if ([textV.text length]>500)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"字符个数不能大于500" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];

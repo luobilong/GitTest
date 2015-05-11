@@ -176,10 +176,11 @@
     {
         [self stopRefresh];
     }
-    else
-    {
-        [self.view removeLoadingVIewInView:self.view andTarget:self];
-    }
+     [self.view removeLoadingVIewInView:self.view andTarget:self];
+//    else
+//    {
+//        [self.view removeLoadingVIewInView:self.view andTarget:self];
+//    }
     if (_deleteCollection)
     {
         _deleteCollection = NO;
@@ -192,27 +193,6 @@
         else
         {
             [self.view addAlertViewWithMessage:[dic objectForKey:@"remark"] andTarget:self];
-        }
-    }
-    else if (_removeProductCollection)
-    {
-        _removeProductCollection = NO;
-        if (netManager.downLoadData)
-        {
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
-            if ([[dic objectForKey:@"respCode"] integerValue] == 1000)
-            {
-                NSLog(@"%@",[NSString stringWithFormat:@"%@?userid=%@",kMyCollectionUrlString,_userId]);
-                [self requestDataWithUrlString:[NSString stringWithFormat:@"%@?userid=%@",kMyCollectionUrlString,_userId]];
-            }
-            else
-            {
-                [self.view addAlertViewWithMessage:[dic objectForKey:@"remark"] andTarget:self];
-            }
-        }
-        else
-        {
-           [self.view addAlertViewWithMessage:@"删除失败" andTarget:self];
         }
     }
     else
@@ -304,14 +284,25 @@
 #pragma mark - 删除产品收藏
 - (void)productRemoveButtonClicked:(UIButton *)btn
 {
-    NSDictionary *dic = [_productArray objectAtIndex:btn.tag-kProductRemoveButtonTag];
-    NSString *productId = [dic objectForKey:@"productid"];
-    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"id"];
-    NSString *productUrl = [NSString stringWithFormat:@"%@?userid=%@&articleid=%@",kDeleteCollectionUrl,userid,productId];
-    NSLog(@"%@",productUrl);
-    _removeProductCollection = YES;
-    
-    [self requestDataWithUrlString:productUrl];
+    _articalId = [[_productArray objectAtIndex:btn.tag-kProductRemoveButtonTag] objectForKey:@"productid"];
+//    NSDictionary *dic = [_productArray objectAtIndex:btn.tag-kProductRemoveButtonTag];
+//    NSString *productId = [dic objectForKey:@"productid"];
+//    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"id"];
+//    NSString *productUrl = [NSString stringWithFormat:@"%@?userid=%@&articleid=%@",kDeleteCollectionUrl,userid,productId];
+////    NSLog(@"%@",productUrl);
+//    _removeProductCollection = YES;
+    [self createDeleteView];
+//    [self requestDataWithUrlString:productUrl];
+}
+
+#pragma mark - MyCollectionCell callBack
+- (void)deleteMyCollection:(MyCollectionCell *)cell
+{
+    /* 删除收藏
+     http://192.168.0.153:8181/labonline/hyController/deleteWdsc.do?userid=5&articleid=6
+     */
+    _articalId = [[_collectionArray objectAtIndex:cell.cellIndex] objectForKey:@"articleid"];
+    [self createDeleteView];
 }
 
 #pragma mark --高度
@@ -347,15 +338,7 @@
     
 }
 
-#pragma mark - MyCollectionCell callBack
-- (void)deleteMyCollection:(MyCollectionCell *)cell
-{
-    /* 删除收藏
-    http://192.168.0.153:8181/labonline/hyController/deleteWdsc.do?userid=5&articleid=6
-     */
-    _articalId = [[_collectionArray objectAtIndex:cell.cellIndex] objectForKey:@"articleid"];
-    [self createDeleteView];
-}
+
 
 #pragma mark - 创建删除弹出框
 - (void)createDeleteView

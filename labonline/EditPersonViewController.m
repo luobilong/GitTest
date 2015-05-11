@@ -99,7 +99,7 @@
     [self.view addSubview:_myTableV];
     
     _currentImage = imageBtn.imageView.image;
-    NSLog(@"%@",_currentImage);
+//    NSLog(@"%@",_currentImage);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -137,7 +137,7 @@
 {
     // 修改完成  http://192.168.0.153:8181/labonline/hyController/updateTx.do?userid=80BE983A9EBC4B079247C4DDA518C2A8&usericon=dfwsvwsvedwvds
     NSData *_data = UIImageJPEGRepresentation(_currentImage, 0.3);
-    NSLog(@"提交图片");
+//    NSLog(@"提交图片");
     NSString *encodedImageStr = [_data base64Encoding];
     NSString *imageString = [encodedImageStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dic = @{@"userid":_userID,@"usericon":imageString};

@@ -63,7 +63,9 @@ typedef enum
 #define kMyEvaluationUrl @"http://123.57.155.106:8080/labonline/hyController/queryPlList.do?userid=%@"
 
 // 收藏接口 参数userid  articleid
-#define kCollectionUrl @"http://123.57.155.106:8080/labonline/hyController/insertWdsc.do"
+//#define kCollectionUrl @"http://123.57.155.106:8080/labonline/hyController/insertWdsc.do"
+#define kCollectionUrl @"http://192.168.0.153:8181/labonline/hyController/insertWdsc.do"
+
 // 我的收藏接口 参数 userid http://192.168.0.153:8181
 //#define kMyCollectionUrlString @"http://123.57.155.106:8080/labonline/hyController/queryWdscList.do"
 #define kMyCollectionUrlString @"http://192.168.0.153:8181/labonline/hyController/queryWdscList.do"
@@ -108,5 +110,7 @@ typedef enum
 #define kTwoFontSize 12
 #define kThreeFontSize 11
 #define kFourFontSize 10
+// 取消输出
+//#define NSLog(...) {}
 
 #endif

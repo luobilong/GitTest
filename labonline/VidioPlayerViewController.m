@@ -45,7 +45,7 @@
 {
     if (path.length == 0)
     {
-        NSLog(@"没有视频资源");
+//        NSLog(@"没有视频资源");
         return;
     }
     NSURL *vidioUrl;
@@ -128,7 +128,7 @@
         //通过_player获取到视频总时长
         CMTime total = _player.currentItem.duration;
         if (CMTimeGetSeconds(total)==0.0) {
-            NSLog(@"无法获取资源信息");
+//            NSLog(@"无法获取资源信息");
             return;
         }
         //让player跳转到指定的播放进度
@@ -177,7 +177,7 @@
         return;
     }
     if (path.length == 0) {
-        NSLog(@"没有找到视频路径!");
+//        NSLog(@"没有找到视频路径!");
     }
     NSURL *url = [NSURL fileURLWithPath:path];
     //AVAsset 视频资源的集合类，能够收集视频资源的信息(视频的类型、总时长等),还能对视频进行预加载处理

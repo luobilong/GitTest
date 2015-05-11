@@ -56,10 +56,8 @@
                 NSDictionary *subDict = [_cateDataArray objectAtIndex:index];
                 UILabel *cateLab = [[UILabel alloc]initWithFrame:CGRectMake(5+j*(lableWidth+5), 40+i*(kCategoryLableHeight+10), lableWidth, kCategoryLableHeight)];
                 cateLab.text = [subDict objectForKey:@"columnname"];
-//                cateLab.text = [_cateDataArray objectAtIndex:index];
                 cateLab.tag = kCateLableTag+index;
                 cateLab.textAlignment = NSTextAlignmentCenter;
-//                cateLab.textColor = [UIColor colorWithRed:90/255.0 green:90/255.0 blue:90/255.0 alpha:1];
                 cateLab.font = [UIFont systemFontOfSize:kTwoFontSize];
                 cateLab.layer.masksToBounds = YES;
                 cateLab.layer.cornerRadius = 5;
@@ -67,6 +65,7 @@
                 cateLab.layer.borderColor = [UIColor colorWithWhite:241/255.0 alpha:1].CGColor;
                 cateLab.userInteractionEnabled = YES;
                 cateLab.textColor = [UIColor colorWithWhite:86/255.0 alpha:1];
+                cateLab.backgroundColor = [UIColor colorWithWhite:248/255.0 alpha:1];
                 [self addSubview:cateLab];
                 
                 UITapGestureRecognizer *tapCateLab = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCateLableMethod:)];
@@ -94,7 +93,7 @@
                 }
                 else
                 {
-                    cateLab.backgroundColor = [UIColor whiteColor];
+                    cateLab.backgroundColor = [UIColor colorWithWhite:248/255.0 alpha:1];
                 }
             }
         }

@@ -76,7 +76,6 @@
     {
         counts = 5;
     }
-    NSLog(@"_______%ld",counts);
     for (int i = 0; i < counts; i ++)
     {
         NSDictionary *subDict = [_articleArray objectAtIndex:i];
@@ -113,7 +112,6 @@
     {
         JiShuZhuanLanSubView *jszlSunV = (JiShuZhuanLanSubView *)tapView;
         _currentArticalIndex = jszlSunV.tag - kJiShuZhuanLanSubViewTag;
-        NSLog(@"!!!!!!!%ld",_currentArticalIndex);
         if ([self.target respondsToSelector:self.jszlViewClickedAction])
         {
             [self.target performSelector:self.jszlViewClickedAction withObject:jszlSunV afterDelay:NO];
@@ -129,7 +127,6 @@
 
 - (IBAction)moreButtonClicked:(id)sender
 {
-    NSLog(@"moreButtonClicked");
     if ([self.target respondsToSelector:self.buttonClickSelector])
     {
         [self.target performSelector:self.buttonClickSelector withObject:self afterDelay:NO];

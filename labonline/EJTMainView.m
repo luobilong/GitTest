@@ -17,7 +17,6 @@
 - (void)setProductInfoArray:(NSArray *)productInfoArray
 {
     _productInfoArray = productInfoArray;
-    NSLog(@"%@",productInfoArray);
     [self createProductBoxWithDataArray:_productInfoArray];
     [self createPageButtonWithCounts:_productInfoArray.count%9?_productInfoArray.count/9+1:_productInfoArray.count/9];
 }
@@ -106,7 +105,6 @@
 //    float maxHeight = _productScrollView.bounds.size.height;
     float maxWidth = self.bounds.size.width;
     float maxHeight = self.bounds.size.height-40;//(self.bounds.size.height*kScreenHeight/480);
-    NSLog(@"-----------%f",maxHeight);
     _productScrollView.contentSize = CGSizeMake(maxWidth*pages, 0);
     int currentProduct = 0;
     for (int i = 0; i < pages; i ++)
@@ -157,9 +155,7 @@
 #pragma mark- 产品按钮点击事件
 - (void)productBtnClicked:(UIButton *)btn
 {
-    NSLog(@"产品%ld被点击",btn.tag-kProductsButtonBaseTag+1);
     NSDictionary *subDic= [_productInfoArray objectAtIndex:btn.tag-kProductsButtonBaseTag];
-    NSLog(@"%@",subDic);
     if ([_target respondsToSelector:_action])
     {
         [_target performSelector:_action withObject:subDic afterDelay:NO];

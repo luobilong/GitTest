@@ -105,7 +105,6 @@
              // 搜索标签
              _requestSubLebel = NO;
              NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-             NSLog(@"%@",dict);
              if ([[dict objectForKey:@"respCode"] integerValue] == 1000)
              {
                  _moNiDataArray = [[dict objectForKey:@"data"] objectForKey:@"labelList"];
@@ -117,7 +116,6 @@
          {
              // 搜索结果
              NSDictionary *dic =[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-             NSLog(@"%@",dic);
              if ([[dic objectForKey:@"respCode"] intValue] == 1000)
              {
                  _searchDataArray = [[dic objectForKey:@"data"] objectForKey:@"resultList"];
@@ -135,7 +133,6 @@
          if (_requestSubLebel)
          {
              _requestSubLebel = NO;
-             NSLog(@"请求标签失败");
          }
          else
          {
@@ -246,7 +243,6 @@
 - (NSInteger)heightFromText:(NSString *)text
 {
      CGRect rect = [text boundingRectWithSize:CGSizeMake(9999, 20)options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:kOneFontSize]} context:nil];
-    NSLog(@"%f",rect.size.width);
     NSInteger width = rect.size.width+10;
     return width;
 }

@@ -15,7 +15,6 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    NSLog(@"awakeFromNib");
     _baseBackView.layer.masksToBounds = YES;
     _baseBackView.layer.cornerRadius = 5;
     _baseBackView.layer.borderWidth = 1;
@@ -87,7 +86,6 @@
 
 - (void)tapLableMethod:(UITapGestureRecognizer *)tap
 {
-    NSLog(@"~~~~~tap~~~~~~~");
     if ([tap.view isKindOfClass:[UILabel class]])
     {
         UILabel *lab = (UILabel *)tap.view;

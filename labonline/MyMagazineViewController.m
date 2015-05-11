@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"我的杂志";
+    self.title = @"我的文章";
     self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1];
     //界面调整
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
@@ -62,7 +62,6 @@
     if ([defaults objectForKey:@"PDFArray"])
     {
         _pdfArray = [[NSMutableArray alloc]initWithArray:[defaults objectForKey:@"PDFArray"]];
-        NSLog(@"%@",[_pdfArray lastObject]);
     }
 }
 
@@ -145,8 +144,8 @@
             }
             else
             {
-                NSLog(@"删除失败");
-                NSLog(@"%@",error);
+//                NSLog(@"删除失败");
+//                NSLog(@"%@",error);
 //                [self.view addAlertViewWithMessage:@"删除文件失败" andTarget:self];
             }
         }

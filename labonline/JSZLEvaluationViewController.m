@@ -200,7 +200,7 @@
 // 键盘升起时 downV 跟着升起
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {
-    NSLog(@"UIKeyboardDidShowNotification");
+//    NSLog(@"UIKeyboardDidShowNotification");
     NSDictionary *info = [notification userInfo];
     CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     CGRect beginKeyboardRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
