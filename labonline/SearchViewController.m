@@ -11,6 +11,8 @@
 #import "AFNetworkTool.h"
 #import "JiShuZhuanLanDetailViewController.h"
 #import "UIView+Category.h"
+#import "SearchProductListTableViewController.h"
+#import "SearchArticleTableViewController.h"
 
 @interface SearchViewController ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -43,17 +45,51 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
-    searchTextField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
-    searchTextField.borderStyle = UITextBorderStyleRoundedRect;
+//    searchTextField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
+//    searchTextField.borderStyle = UITextBorderStyleRoundedRect;
+//    searchTextField.keyboardType = UIKeyboardTypeNamePhonePad;
+//    searchTextField.delegate = self;
+//    searchTextField.textColor = [UIColor redColor];
+//    searchTextField.font = [UIFont systemFontOfSize:kOneFontSize];
+//    searchTextField.clearButtonMode = UITextFieldViewModeAlways;
+    self.navigationItem.title = @"检索";
+    
+//    UIButton *searchBUtton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [searchBUtton setFrame:CGRectMake(0, 0, 50, 25)];
+//    [searchBUtton setTitle:@"搜文章" forState:UIControlStateNormal];
+//    searchBUtton.layer.masksToBounds = YES;
+//    searchBUtton.layer.cornerRadius = 10;
+//    searchBUtton.titleLabel.font =[UIFont systemFontOfSize:kTwoFontSize];
+//    searchBUtton.backgroundColor = [UIColor colorWithRed:217/255.0 green:0 blue:36/255.0 alpha:1];
+//    [searchBUtton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [searchBUtton addTarget:self action:@selector(searchMethod) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:searchBUtton];
+//    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIView *searchV=[[UIView alloc] initWithFrame:CGRectMake(0, 70, kScreenWidth, 70)];
+//    searchV.backgroundColor=[UIColor redColor];
+    [self.view addSubview:searchV];
+    
+    UIImageView  *shurukImgV = [[UIImageView alloc] initWithFrame:CGRectMake(10,0,kScreenWidth-60*2-20,32)];
+    shurukImgV.image = [UIImage imageNamed:@"shurukuang_05.png"];
+    [searchV addSubview:shurukImgV];
+    
+    UIImageView  *searchImgV = [[UIImageView alloc] initWithFrame:CGRectMake(14,2,30,28)];
+    searchImgV.image = [UIImage imageNamed:@"aniu_09.png"];
+    [searchV addSubview:searchImgV];
+    
+    searchTextField = [[UITextField alloc]initWithFrame:CGRectMake(15+30, 1, kScreenWidth-60*2-20-30-5, 30)];
+    searchTextField.borderStyle = UITextBorderStyleNone;//UITextBorderStyleRoundedRect;
     searchTextField.keyboardType = UIKeyboardTypeNamePhonePad;
     searchTextField.delegate = self;
     searchTextField.textColor = [UIColor redColor];
     searchTextField.font = [UIFont systemFontOfSize:kOneFontSize];
     searchTextField.clearButtonMode = UITextFieldViewModeAlways;
-    self.navigationItem.titleView = searchTextField;
+    searchTextField.text=@"分析仪";
+    [searchV addSubview:searchTextField];
     
     UIButton *searchBUtton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [searchBUtton setFrame:CGRectMake(0, 0, 50, 25)];
+    [searchBUtton setFrame:CGRectMake(kScreenWidth-60*2, 2, 50, 26)];
     [searchBUtton setTitle:@"搜文章" forState:UIControlStateNormal];
     searchBUtton.layer.masksToBounds = YES;
     searchBUtton.layer.cornerRadius = 10;
@@ -61,11 +97,27 @@
     searchBUtton.backgroundColor = [UIColor colorWithRed:217/255.0 green:0 blue:36/255.0 alpha:1];
     [searchBUtton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [searchBUtton addTarget:self action:@selector(searchMethod) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:searchBUtton];
-    self.navigationItem.rightBarButtonItem = rightItem;
     
-    touView  = [[UIView alloc]initWithFrame:CGRectMake(0, 70, kScreenWidth, 1)];
-    _tableV = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+    UIButton *searchBUtton2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchBUtton2 setFrame:CGRectMake(kScreenWidth-60, 2, 50, 26)];
+    [searchBUtton2 setTitle:@"搜产品" forState:UIControlStateNormal];
+    searchBUtton2.layer.masksToBounds = YES;
+    searchBUtton2.layer.cornerRadius = 10;
+    searchBUtton2.titleLabel.font =[UIFont systemFontOfSize:kTwoFontSize];
+    searchBUtton2.backgroundColor = [UIColor colorWithRed:217/255.0 green:0 blue:36/255.0 alpha:1];
+    [searchBUtton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [searchBUtton2 addTarget:self action:@selector(searchProductMethod) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *lable1=[[UILabel alloc] initWithFrame:CGRectMake(10, 42, 80, 20)];
+    lable1.text=@"标签集：";
+    lable1.font=[UIFont boldSystemFontOfSize:15.0f];
+    lable1.textColor=[UIColor redColor];
+    [searchV addSubview:searchBUtton];
+    [searchV addSubview:searchBUtton2];
+    [searchV addSubview:lable1];
+    
+    touView  = [[UIView alloc]initWithFrame:CGRectMake(0, 70+70, kScreenWidth, 1)];
+    _tableV = [[UITableView alloc]initWithFrame:CGRectMake(0, 70+70, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
     _tableV.delegate = self;
     _tableV.dataSource = self;
     _tableV.tableHeaderView = touView;
@@ -84,13 +136,38 @@
     [self requestWithUrl:kSearchLableUrl Params:nil];
 }
 
-#pragma mark -- 搜索
+#pragma mark -- 搜索文章
 - (void)searchMethod
 {
     // 搜索
     [searchTextField resignFirstResponder];
-    NSDictionary *paramDic = @{@"labelid":@"1",@"label":searchTextField.text};
-    [self requestWithUrl:kSearchUrl Params:paramDic];
+    if (searchTextField.text.length==0) {
+        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入查询关键字" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertV show];
+    }else{
+//        NSDictionary *paramDic = @{@"labelid":@"1",@"label":searchTextField.text,@"querytype":@"0"};
+//        [self requestWithUrl:kSearchUrl Params:paramDic];
+        SearchArticleTableViewController *saTv=[[SearchArticleTableViewController alloc] init];
+        saTv.searchStr=searchTextField.text;
+        saTv.querytypeStr=@"0";
+        [self.navigationController pushViewController:saTv animated:YES];
+    }
+}
+#pragma mark -- 搜索产品
+- (void)searchProductMethod
+{
+    // 搜索
+    [searchTextField resignFirstResponder];
+    if (searchTextField.text.length==0) {
+        UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入查询关键字" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertV show];
+    }else{
+//        NSDictionary *paramDic = @{@"currentPage":@"1",@"keyword":searchTextField.text,@"pageSize":@"20"};
+//        [self requestWithUrl:kSearchProductUrl Params:paramDic];
+        SearchProductListTableViewController *spTv=[[SearchProductListTableViewController alloc] init];
+        spTv.searchStr=searchTextField.text;
+        [self.navigationController pushViewController:spTv animated:YES];
+    }
 }
 
 #pragma mark --网络请求
@@ -236,7 +313,11 @@
 #pragma mark - 标签点击事件
 - (void)buttonClicked:(UIButton *)btn
 {
-    searchTextField.text = [[_moNiDataArray objectAtIndex:btn.tag - kMarkButtonTag] objectForKey:@"label"];
+//    searchTextField.text = [[_moNiDataArray objectAtIndex:btn.tag - kMarkButtonTag] objectForKey:@"label"];
+    SearchArticleTableViewController *saTv=[[SearchArticleTableViewController alloc] init];
+    saTv.searchStr=[[_moNiDataArray objectAtIndex:btn.tag - kMarkButtonTag] objectForKey:@"label"];
+    saTv.querytypeStr=@"1";
+    [self.navigationController pushViewController:saTv animated:YES];
 }
 
 #pragma mark - 计算宽度

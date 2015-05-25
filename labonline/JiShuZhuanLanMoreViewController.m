@@ -19,12 +19,18 @@
 @interface JiShuZhuanLanMoreViewController ()<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
 {
     UITableView *_tableView;
-    NSArray *_articalArray;
+//    NSArray *_articalArray;
+    NSMutableArray *_articalArray;
     NSInteger _currentEnterCell;//进入的cell
     BOOL _addReadCounts;
     EGORefreshTableHeaderView *_refresV;
     BOOL _reloading;
     BOOL _netRequesting;
+    
+    int _currentRequestPage;
+    UIView *_loadingMoreView;
+    NSDictionary *_loadingPageDic;
+    BOOL _loadMore;
 }
 @end
 
@@ -61,8 +67,16 @@
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
         if ([[dict objectForKey:@"respCode"] integerValue] == 1000)
         {
-            _articalArray = [[dict objectForKey:@"data"] objectForKey:@"article"];
+            _loadingPageDic = [dict objectForKey:@"pageBean"];
+            [self createLoadingMoreView];
+            if (!_loadMore)
+            {
+                [_articalArray removeAllObjects];
+            }
+//            _articalArray = [[dict objectForKey:@"data"] objectForKey:@"article"];
+            [_articalArray addObjectsFromArray:[[dict objectForKey:@"data"] objectForKey:@"article"]];
 //            NSLog(@"%@",dict);
+            _loadMore = NO;
             [_tableView reloadData];
         }
         
@@ -114,7 +128,7 @@
     _addReadCounts = NO;
 
     // tableView
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 10,kScreenWidth, kScreenHeight-75) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 10,kScreenWidth, kScreenHeight-75-10) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
@@ -122,8 +136,53 @@
     [self.view addSubview:_tableView];
     
     [self.view addLoadingViewInSuperView:self.view andTarget:self];
-    [self requestMainDataWithURLString:[NSString stringWithFormat:kJSZLMoreUrlString,_typeId]];
+    _articalArray = [[NSMutableArray alloc]init];
+    _currentRequestPage=1;
+    NSString *newStrUrl=[kJSZLMoreUrlString stringByAppendingFormat:@"&urrentPage=%d&pageSize=10",_currentRequestPage];
+    [self requestMainDataWithURLString:[NSString stringWithFormat:newStrUrl,_typeId]];
     [self createRefreshView];
+}
+#pragma mark - 创建尾部视图
+- (void)createLoadingMoreView
+{
+    NSInteger sumPages = [[_loadingPageDic objectForKey:@"totalPage"] intValue];
+    if (_currentRequestPage<sumPages)
+    {
+        _loadingMoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setFrame:CGRectMake(10, 5, kScreenWidth-20, 20)];
+        [btn setBackgroundColor:[UIColor clearColor]];
+        [btn setTitle:@"加载更多...." forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithWhite:128/255.0 alpha:1] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:kOneFontSize];
+        [btn addTarget:self action:@selector(loadMoreButonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_loadingMoreView addSubview:btn];
+    }
+    else
+    {
+        _loadingMoreView = nil;
+    }
+}
+#pragma mark - 尾部视图 加载更多
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return _loadingMoreView;
+}
+#pragma mark -- 去掉多余的线
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return _loadingMoreView.frame.size.height;
+}
+
+#pragma mark - 加载更多按钮点击事件
+- (void)loadMoreButonClicked:(UIButton *)btn
+{
+    // 加载更多
+    _loadMore = YES;
+    _currentRequestPage ++;
+    
+    NSString *newStrUrl=[kJSZLMoreUrlString stringByAppendingFormat:@"&currentPage=%d&pageSize=10",_currentRequestPage];
+    [self requestMainDataWithURLString:[NSString stringWithFormat:newStrUrl,_typeId]];
 }
 
 #pragma mark - 返回上一页
@@ -183,8 +242,9 @@
 #pragma mark - 增加阅读数
 - (void)addReadCounts
 {
-    _addReadCounts = YES;
-    [_tableView reloadData];
+//    _addReadCounts = YES;
+//    [_tableView reloadData];
+    [self requestMainDataWithURLString:[NSString stringWithFormat:kJSZLMoreUrlString,_typeId]];
 }
 
 #pragma mark --下拉刷新

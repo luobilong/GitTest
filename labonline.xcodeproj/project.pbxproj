@@ -63,6 +63,8 @@
 		0446BF0B1ADE519800587FD5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0446BF0A1ADE519800587FD5 /* libz.dylib */; };
 		0446BF0D1ADE51AA00587FD5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0446BF0C1ADE51AA00587FD5 /* libsqlite3.0.dylib */; };
 		0446BF0F1ADE52FC00587FD5 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0446BF0E1ADE52FC00587FD5 /* libc++.dylib */; };
+		04561E0E1B0DC9F500744B79 /* SearchProductListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561E0D1B0DC9F500744B79 /* SearchProductListTableViewController.m */; };
+		04561E111B0DE1BC00744B79 /* SearchArticleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04561E101B0DE1BC00744B79 /* SearchArticleTableViewController.m */; };
 		04CDCE9F1ADF5F9D001082AB /* OffLineVidioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CDCE9E1ADF5F9D001082AB /* OffLineVidioCell.xib */; };
 		04CDCEA51ADF7E5B001082AB /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04CDCEA31ADF7E5B001082AB /* TencentOpenApi_IOS_Bundle.bundle */; };
 		04CDCEA61ADF7E5B001082AB /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CDCEA41ADF7E5B001082AB /* TencentOpenAPI.framework */; };
@@ -315,6 +317,10 @@
 		0446BF0A1ADE519800587FD5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		0446BF0C1ADE51AA00587FD5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		0446BF0E1ADE52FC00587FD5 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		04561E0C1B0DC9F500744B79 /* SearchProductListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProductListTableViewController.h; sourceTree = "<group>"; };
+		04561E0D1B0DC9F500744B79 /* SearchProductListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProductListTableViewController.m; sourceTree = "<group>"; };
+		04561E0F1B0DE1BC00744B79 /* SearchArticleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArticleTableViewController.h; sourceTree = "<group>"; };
+		04561E101B0DE1BC00744B79 /* SearchArticleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArticleTableViewController.m; sourceTree = "<group>"; };
 		04CDCE9E1ADF5F9D001082AB /* OffLineVidioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OffLineVidioCell.xib; sourceTree = "<group>"; };
 		04CDCEA31ADF7E5B001082AB /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		04CDCEA41ADF7E5B001082AB /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -1313,6 +1319,10 @@
 			children = (
 				FDA91DE51AD4BB1200734E1B /* SearchViewController.h */,
 				FDA91DE61AD4BB1200734E1B /* SearchViewController.m */,
+				04561E0C1B0DC9F500744B79 /* SearchProductListTableViewController.h */,
+				04561E0D1B0DC9F500744B79 /* SearchProductListTableViewController.m */,
+				04561E0F1B0DE1BC00744B79 /* SearchArticleTableViewController.h */,
+				04561E101B0DE1BC00744B79 /* SearchArticleTableViewController.m */,
 				FDA91DF11AD4F98100734E1B /* NavigationButton.h */,
 				FDA91DF21AD4F98100734E1B /* NavigationButton.m */,
 				FDC430DF1AD60C05006AC165 /* SearchCell.h */,
@@ -1616,6 +1626,7 @@
 				04FE4C431ACD328D00A922DA /* AFHTTPRequestOperationManager.m in Sources */,
 				FD462E561ACD0EF6001AC895 /* OffLIneVidioViewController.m in Sources */,
 				FD47C8101AC521D300846AC9 /* JiShuZhuanLanDetailViewController.m in Sources */,
+				04561E0E1B0DC9F500744B79 /* SearchProductListTableViewController.m in Sources */,
 				FD462E481ACCDF6B001AC895 /* MyCollectionCell.m in Sources */,
 				FDA91DE71AD4BB1200734E1B /* SearchViewController.m in Sources */,
 				043C77391AD4F1A000B0DEAC /* RegisterViewController.m in Sources */,
@@ -1671,6 +1682,7 @@
 				04FE4C481ACD328D00A922DA /* AFURLRequestSerialization.m in Sources */,
 				FD9392061AE637C700B4F1EE /* LoginView.m in Sources */,
 				FD9A76B01ACB86F7007ACC11 /* MainListCell.m in Sources */,
+				04561E111B0DE1BC00744B79 /* SearchArticleTableViewController.m in Sources */,
 				FD5CC64A1AD7B8A1008986F0 /* SDWebImageManager.m in Sources */,
 				FD96C8C31AC1107C0002778A /* VidioPlayerViewController.m in Sources */,
 				FDDF61781AF0EC9900725F23 /* EJTListCell.m in Sources */,

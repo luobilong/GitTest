@@ -12,4 +12,7 @@
 
 @property(nonatomic,strong)NSDictionary *proDetail;
 
+@property (nonatomic,assign) id delegate;
+@property (nonatomic,assign) SEL action;
+
 @end

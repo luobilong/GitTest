@@ -60,10 +60,13 @@
     _articleDict = articleDict;
     _titleLable.text = [_articleDict objectForKey:@"type"];
     _articleArray = [_articleDict objectForKey:@"article"];
-    if (_articleArray.count<=5)
-    {
-        _moreButton.hidden = YES;
-    }
+//    if (_articleArray.count<=5)
+//    {
+//        _moreButton.hidden = YES;
+//    }else{
+        _moreButton.hidden = NO;
+//    }
+
     [self createJSZLSubViewWithCounts:_articleArray.count];
 }
 

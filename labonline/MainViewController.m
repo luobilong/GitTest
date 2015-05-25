@@ -43,7 +43,7 @@
 @interface MainViewController ()<LeftViewControllerDelegate,UIScrollViewDelegate,EGORefreshTableHeaderDelegate>
 {
     UIScrollView *_backScrollV;
-    JSZLCateView *_jSZLCateV;
+    JSZLCateView *_jSZLCateV;//技术专栏
     PictureShowView *_pictureV;
     MainNewView *_mainNewV;
     NSDictionary *_newMagazineDict;
@@ -51,8 +51,8 @@
     BOOL _reloading;
     EGORefreshTableHeaderView *_refresV;
     int _currentTopY;
-    EJTMainView *eJTView;
-    ProductCateView *_productCateV;
+    EJTMainView *eJTView;//医检通-精口推荐
+    ProductCateView *_productCateV;//产品分类
     BOOL _requestEJTCate;
 }
 @end

@@ -455,8 +455,17 @@
         NSDictionary *proD = [_mainArray objectAtIndex:indexPath.row];
         ProductDetailViewController *proDetail=[[ProductDetailViewController alloc] init];
         proDetail.proDetail=proD;
+        proDetail.delegate = self;
+        proDetail.action = @selector(addReadCounts);
         [self.navigationController pushViewController:proDetail animated:YES];
     }
+}
+
+#pragma mark - 增加阅读数
+- (void)addReadCounts
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@?classifyid=%@&currentPage=%d&pageSize=10",kEJTProductListUrl,_classifyid,_currentRequestPage];
+    [self requestWithUrl:urlStr];
 }
 
 #pragma mark -- 去掉多余的线

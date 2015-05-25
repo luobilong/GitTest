@@ -127,6 +127,10 @@
 - (void)backToPrePage
 {
     [self.navigationController popViewControllerAnimated:YES];
+    if ([_delegate respondsToSelector:_action])
+    {
+        [_delegate performSelector:_action withObject:nil afterDelay:NO];
+    }
 }
 
 /*

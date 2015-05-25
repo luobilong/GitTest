@@ -153,7 +153,7 @@
 #pragma mark - UITableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _articleListArray.count>=5?5:_articleListArray.count;
+    return _articleListArray.count;//>=5?5:_articleListArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -250,8 +250,9 @@
 #pragma mark - 增加阅读数
 - (void)addReadCounts
 {
-    _addReadCounts = YES;
-    [jiShuZhuanLanTableView reloadData];
+//    _addReadCounts = YES;
+//    [jiShuZhuanLanTableView reloadData];
+    [self requestMainDataWithURLString:kJSZLUrlString];
 }
 
 

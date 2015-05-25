@@ -19,9 +19,9 @@
 {
     UITableView *_listTableView;
     NSArray *_listArray;
-    BOOL _addReadCounts;
-    NSInteger _currentCellIndex;
-    NSInteger _selectedIndex;
+//    BOOL _addReadCounts;
+//    NSInteger _currentCellIndex;
+//    NSInteger _selectedIndex;
     EGORefreshTableHeaderView *_refresV;
     BOOL _reloading;
     BOOL _netRequest;
@@ -61,7 +61,6 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    _addReadCounts = NO;
 //    _listArray = @[@"心脑血管疾病预防",@"宝洁医疗诊断相机设计",@"医学世界",@"心脑血管疾病预防"];
     _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-10) style:UITableViewStylePlain];
     _listTableView.delegate = self;
@@ -155,11 +154,11 @@
         cell.action = @selector(enterDetail:);
     }
     
-    if (_addReadCounts && _currentCellIndex == indexPath.row)
-    {
-        cell.addReadCounts = YES;
-        cell.selectedIndex = _selectedIndex;
-    }
+//    if (_addReadCounts && _currentCellIndex == indexPath.row)
+//    {
+//        cell.addReadCounts = YES;
+//        cell.selectedIndex = _selectedIndex;
+//    }
     cell.listDict = [_listArray objectAtIndex:indexPath.row];
     cell.cellIndex = indexPath.row;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -175,8 +174,8 @@
 #pragma mark - 进入文章详情
 - (void)enterDetail:(MainListCell *)cell
 {
-    _currentCellIndex = cell.cellIndex;
-    _selectedIndex = cell.selectedIndex;
+//    _currentCellIndex = cell.cellIndex;
+//    _selectedIndex = cell.selectedIndex;
     NSDictionary *dict = [[cell.listDict objectForKey:@"article"] objectAtIndex:cell.selectedIndex];
     JiShuZhuanLanDetailViewController *detailVC = [[JiShuZhuanLanDetailViewController alloc]init];
     detailVC.articalDic = dict;
@@ -202,8 +201,9 @@
 
 - (void)addReadCounts
 {
-    _addReadCounts = YES;
-    [_listTableView reloadData];
+//    _addReadCounts = YES;
+//    [_listTableView reloadData];
+    [self requestMainDataWithURLString:[NSString stringWithFormat:@"%@?id=%@",kMainListUrlString,_magazineId]];
 }
 
 #pragma mark --下拉刷新
