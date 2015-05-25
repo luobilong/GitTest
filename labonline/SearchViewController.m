@@ -85,7 +85,7 @@
     searchTextField.textColor = [UIColor redColor];
     searchTextField.font = [UIFont systemFontOfSize:kOneFontSize];
     searchTextField.clearButtonMode = UITextFieldViewModeAlways;
-    searchTextField.text=@"分析仪";
+//    searchTextField.text=@"分析仪";
     [searchV addSubview:searchTextField];
     
     UIButton *searchBUtton = [UIButton buttonWithType:UIButtonTypeCustom];
