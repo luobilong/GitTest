@@ -70,7 +70,7 @@
 #pragma mark --网络请求
 - (void)requestWithUrl:(NSString *)url Params:(NSDictionary *)dict
 {
-    NSLog(@"%@",url);
+//    NSLog(@"%@",url);
     if (_reloading)
     {
         [self stopRefresh];

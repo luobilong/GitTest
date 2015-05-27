@@ -29,6 +29,7 @@
     EGORefreshTableHeaderView *_refresV;
     BOOL _reloading;
     BOOL _netRequesting;
+    PictureShowView *_pictureV;
 }
 @end
 
@@ -82,12 +83,12 @@
     _addReadCounts = NO;
     UIView *headerV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenHeight, kImageShowViewHeight+10)];
     headerV.backgroundColor = [UIColor clearColor];
-    PictureShowView *pictureV = [[PictureShowView alloc]initWithFrame:CGRectMake(10, 5, kScreenWidth-20, kImageShowViewHeight)];
-    pictureV.target = self;
-    pictureV.imageInfoArray = @[];
-    pictureV.action = @selector(pictureShowMethod:);
-    pictureV.backgroundColor = [UIColor whiteColor];
-    [headerV addSubview:pictureV];
+    _pictureV = [[PictureShowView alloc]initWithFrame:CGRectMake(10, 5, kScreenWidth-20, kImageShowViewHeight)];
+    _pictureV.target = self;
+    _pictureV.imageInfoArray = @[];
+    _pictureV.action = @selector(pictureShowMethod:);
+    _pictureV.backgroundColor = [UIColor whiteColor];
+    [headerV addSubview:_pictureV];
     
     jiShuZhuanLanTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64) style:UITableViewStylePlain];
     jiShuZhuanLanTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -140,6 +141,9 @@
         // 解析
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
         _articleListArray = [[dict objectForKey:@"data"] objectForKey:@"articleList"];
+        
+        _pictureV.imageInfoArray = [[dict objectForKey:@"data"] objectForKey:@"pictureList"];
+        
         [jiShuZhuanLanTableView reloadData];
     }
     else

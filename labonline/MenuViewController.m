@@ -12,6 +12,7 @@
 #import "MagazineModel.h"
 #import "UIImageView+WebCache.h"
 #import "MainListViewController.h"
+#import "SearchViewController.h"
 
 @interface MenuViewController ()<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -162,6 +163,8 @@
 - (void)enterSearchViewController
 {
     // 搜索
+    SearchViewController *searchVC = [[SearchViewController alloc]init];
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 #pragma mark - 左侧菜单
 -(void)popToLeftMenu

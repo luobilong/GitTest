@@ -31,7 +31,7 @@
 //    NSLog(@"%@",subDict);
     
     _titleLable.text = [_subDict objectForKey:@"title"];
-    _detailLable.text = [NSString stringWithFormat:@"来源：%@",[_subDict objectForKey:@"source"]];
+    _detailLable.text = [@"发布时间: " stringByAppendingFormat:@"%@",[_subDict objectForKey:@"releasetime"]];
     _youLanCountsLable.text = [NSString stringWithFormat:@"%ld",[[_subDict objectForKey:@"seenum"] integerValue]];
     
 }

@@ -64,7 +64,7 @@
         btn.tag = kImageButtonTag + i;
         [btn setFrame:CGRectMake(10+i*btnWidth, hei-btnHeight-5, btnWidth-3, btnHeight)];
         [btn setImageWithURL:[NSURL URLWithString:[_imageDataArray objectAtIndex:i]]];
-        NSLog(@"%@",_imageDataArray);
+//        NSLog(@"%@",_imageDataArray);
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 1;

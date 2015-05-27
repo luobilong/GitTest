@@ -27,7 +27,7 @@
 {
     _subDict = subDict;
     _titleLable.text = [_subDict objectForKey:@"title"];
-    _fromLable.text = [_subDict objectForKey:@"type"];
+    _fromLable.text = [@"发布时间: " stringByAppendingFormat:@"%@",[_subDict objectForKey:@"releasetime"]];
     _youLanCountsLable.text = [NSString stringWithFormat:@"%ld",[[_subDict objectForKey:@"seenum"] integerValue]];
     ;
 }

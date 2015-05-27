@@ -64,7 +64,7 @@
     {
         _articalID = [_articalDic objectForKey:@"id"];
     }
-    NSLog(@"~~~~~~%@",_articalDic);
+//    NSLog(@"~~~~~~%@",_articalDic);
     if ([[_articalDic objectForKey:@"urlpdf"] length]>5)
     {
         _isPDF = YES;
@@ -383,7 +383,7 @@
                 userid = [defaults objectForKey:@"id"];
                 _collection = YES;
                 NSString *urlStr = [NSString stringWithFormat:@"%@?userid=%@&articleid=%@",kCollectionUrl,userid,_articalID];
-                NSLog(@"%@",urlStr);
+//                NSLog(@"%@",urlStr);
                 [self requestMainDataWithURLString:urlStr];
                 [self.view addLoadingViewInSuperView:self.view andTarget:self];
             }

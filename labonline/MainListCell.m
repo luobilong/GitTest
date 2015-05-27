@@ -48,7 +48,7 @@
     for (int i = 0; i < articalArray.count; i ++)
     {
         NSDictionary *subDic = [articalArray objectAtIndex:i];
-        UILabel *lab  = [[UILabel alloc]initWithFrame:CGRectMake(10, 5+i*30, kScreenWidth-100, 25)];
+        UILabel *lab  = [[UILabel alloc]initWithFrame:CGRectMake(10, 5+i*55, kScreenWidth-100, 25)];
         lab.tag = kLabTag + i;
         lab.text = [subDic objectForKey:@"title"];
         lab.textAlignment = NSTextAlignmentLeft;
@@ -60,11 +60,19 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapLableMethod:)];
         [lab addGestureRecognizer:tap];
         
-        UIImageView *youLanImgV = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth-70, 12+i*30,15, 12)];
+        UILabel *labAuthor  = [[UILabel alloc]initWithFrame:CGRectMake(10, 10+20+i*55, kScreenWidth-100, 20)];
+        labAuthor.text = [@"作者: " stringByAppendingFormat:@"%@",[subDic objectForKey:@"author"]];
+        labAuthor.textAlignment = NSTextAlignmentLeft;
+        labAuthor.textColor = [UIColor colorWithRed:66/255.0 green:66/255.0 blue:66/255.0 alpha:0.7];
+        labAuthor.font = [UIFont systemFontOfSize:kOneFontSize-1];
+        labAuthor.userInteractionEnabled = YES;
+        [_baseBackView addSubview:labAuthor];
+        
+        UIImageView *youLanImgV = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth-70, 12+20+i*55,15, 12)];
         youLanImgV.image = [UIImage imageNamed:@"游览.png"];
         [_baseBackView addSubview:youLanImgV];
         // 游览数
-        UILabel *youLanLable = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth-50, 13+i*30,30, 12)];
+        UILabel *youLanLable = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth-50, 13+20+i*55,30, 12)];
         youLanLable.text = [NSString stringWithFormat:@"%ld",[[subDic objectForKey:@"seenum"] integerValue]];
         if (_addReadCounts&&(_selectedIndex == i))
         {
@@ -77,7 +85,7 @@
         
         if (i<articalArray.count-1)
         {
-            UILabel *lineLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 30+i*30, kScreenWidth-50, 1)];
+            UILabel *lineLab = [[UILabel alloc]initWithFrame:CGRectMake(10, 55+i*55, kScreenWidth-50, 1)];
             lineLab.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
             [_baseBackView addSubview:lineLab];
         }

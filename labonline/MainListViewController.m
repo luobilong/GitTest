@@ -168,7 +168,7 @@
 {
     // 根据文章数确定cell高度
     NSArray *subArr = [[_listArray objectAtIndex:indexPath.row] objectForKey:@"article"];
-    return 30*subArr.count+35;;
+    return 55*subArr.count+35;;
 }
 
 #pragma mark - 进入文章详情

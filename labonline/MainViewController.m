@@ -264,41 +264,30 @@
     {
         [self.view removeLoadingVIewInView:self.view andTarget:self];
     }
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
-//    NSLog(@"@@@@@@@:%@",netManager.downLoadData);
-    
-    if ([dict objectForKey:@"productclassifyList"])  _requestEJTCate= YES;
-    else _requestEJTCate= NO;
-    
-    if (_requestEJTCate)
-    {
-        if (netManager.downLoadData)
+    if (netManager.downLoadData){
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
+        
+        if ([dict objectForKey:@"productclassifyList"])  _requestEJTCate= YES;
+        else _requestEJTCate= NO;
+        
+        if (_requestEJTCate)
         {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
             if ([dict objectForKey:@"productclassifyList"])
             {
                 NSArray *eJtMenuArray = [self makeUpEJTMenuDataWithArray:[dict objectForKey:@"productclassifyList"]];
-//                NSLog(@"@@@@@@@:%@",eJtMenuArray);
+                //                NSLog(@"@@@@@@@:%@",eJtMenuArray);
                 [[NSUserDefaults standardUserDefaults] setObject:eJtMenuArray forKey:@"MENUARRAY"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             }
         }
-    }
-    else
-    {
-        if (netManager.downLoadData)
-        {
-            // 成功
-            // 解析
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
-            [self addControlsWithDictionary:[dict objectForKey:@"data"]];
-//            NSLog(@"")
-        }
         else
         {
-            // 失败
-            [self.view addAlertViewWithMessage:@"请求不到数据，请重试" andTarget:self];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
+            [self addControlsWithDictionary:[dict objectForKey:@"data"]];
         }
+    }else{
+        [self.view addAlertViewWithMessage:@"请求不到数据，请保持网络连接" andTarget:self];
     }
 }
 
