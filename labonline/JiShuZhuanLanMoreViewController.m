@@ -103,7 +103,7 @@
     // Do any additional setup after loading the view.
     
     _reloading = NO;
-    self.title = @"生物检验";
+    self.title = _typeTitle;
     self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1];
     // 设置左右按钮
     // 左侧按钮

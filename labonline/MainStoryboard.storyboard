@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                                     <constraint firstAttribute="height" constant="48" id="A8r-hY-K13"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hN9-KI-UoJ">
                                 <rect key="frame" x="75" y="190" width="225" height="44"/>
@@ -42,14 +42,8 @@
                                     <constraint firstAttribute="height" constant="44" id="BIA-5w-acI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shurukuang_05.png" translatesAutoresizingMaskIntoConstraints="NO" id="pUf-za-ySA">
-                                <rect key="frame" x="67" y="190" width="240" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Ipa-Y1-zBB"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2n-ff-HDv">
                                 <rect key="frame" x="80" y="290" width="108" height="54"/>
                                 <constraints>
@@ -75,6 +69,12 @@
                                     <action selector="doLogin:" destination="ccG-Bx-Gjs" eventType="touchUpInside" id="xye-nS-0Ci"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shurukuang_05.png" translatesAutoresizingMaskIntoConstraints="NO" id="pUf-za-ySA">
+                                <rect key="frame" x="67" y="190" width="240" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ipa-Y1-zBB"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -137,7 +137,7 @@
                                     <constraint firstAttribute="width" secondItem="9d1-tg-R7e" secondAttribute="height" multiplier="1:1" id="zSh-ig-AUD"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vI-Mp-L9p">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vI-Mp-L9p">
                                 <rect key="frame" x="97" y="439" width="182" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="njp-yS-drs"/>
@@ -155,7 +155,7 @@
                                     <constraint firstAttribute="height" constant="30" id="nqa-om-bvU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hongxian_03.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ich-la-Z0a">
                                 <rect key="frame" x="60" y="220" width="255" height="1"/>
@@ -229,7 +229,7 @@
                                     <constraint firstAttribute="height" constant="30" id="5H2-qA-RQn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入邮箱号码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GwW-9d-8HH">
                                 <rect key="frame" x="122" y="319" width="193" height="30"/>
@@ -237,7 +237,7 @@
                                     <constraint firstAttribute="height" constant="30" id="YTC-Q0-3KL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="您的手机号" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A59-3D-TxD">
                                 <rect key="frame" x="122" y="369" width="193" height="30"/>
@@ -245,7 +245,7 @@
                                     <constraint firstAttribute="height" constant="30" id="vuI-sx-PsC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="按钮_19.png" translatesAutoresizingMaskIntoConstraints="NO" id="9Xv-iD-uB8">
                                 <rect key="frame" x="302" y="234" width="18" height="18"/>
@@ -276,7 +276,7 @@
                                     <constraint firstAttribute="height" constant="30" id="dRh-FE-qdb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -46,7 +46,7 @@
     [self.view addSubview:appName];
     
     UILabel *versionLable = [[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth-kAppNameLableWidth)/2, 85+kMainImageWidth+30, kAppNameLableWidth, 20)];
-    versionLable.text = @"V1.0.1";
+    versionLable.text = @"V1.3";
     versionLable.textAlignment = NSTextAlignmentCenter;
     versionLable.textColor = [UIColor colorWithRed:214/255.0 green:0 blue:0 alpha:1];
     versionLable.font = [UIFont systemFontOfSize:14];

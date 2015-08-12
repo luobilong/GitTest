@@ -115,7 +115,7 @@
                         <action selector="EMailButtonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="ilc-WO-VfQ"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="605" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyM-X8-C5u">
+                <button hidden="YES" opaque="NO" tag="605" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyM-X8-C5u">
                     <rect key="frame" x="240" y="122" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="7bu-fO-yfB"/>
@@ -148,7 +148,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新浪微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJA-Lh-vT0">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新浪微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJA-Lh-vT0">
                     <rect key="frame" x="240" y="182" width="60" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="dCd-2D-WwX"/>

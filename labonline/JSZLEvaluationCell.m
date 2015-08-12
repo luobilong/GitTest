@@ -42,10 +42,19 @@
 - (void)setEvaluDict:(NSDictionary *)evaluDict
 {
     _evaluDict = evaluDict;
-    
+    NSLog(@"%@",_evaluDict);
     _evaluationLable.text = [[_evaluDict objectForKey:@"text"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     _timeLable.text = [_evaluDict objectForKey:@"created_at"];
-    _userNameLable.text = [_evaluDict objectForKey:@"source"];
+    if ([[_evaluDict objectForKey:@"source"] isEqual:[NSNull null]])
+    {
+        // 当前字段为 NSNull 与nil不同 所以加判断 （应该是昵称为空）
+        _userNameLable.text = @"未设置昵称";
+    }
+    else
+    {
+        _userNameLable.text = [_evaluDict objectForKey:@"source"];
+    }
+   
     [_userImageButton setImageWithURL:[NSURL URLWithString:[_evaluDict objectForKey:@"urlsourcepic"]] placeholderImage:[UIImage imageNamed:@"头像.png"]];
 }
 

@@ -49,7 +49,7 @@
     
     magazines=[[NSMutableArray alloc]init];
     
-    self.title = @"医检在线";
+    self.title = @"往期杂志";
     self.view.backgroundColor = [UIColor whiteColor];
     //self.navigationController.navigationBar.barTintColor=[UIColor redColor];
     
@@ -272,7 +272,7 @@
 //初始主界面
 - (void)initPageView:(UIView *)view
 {
-    UITableView *wangQiTable=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, WidthOfScreen, HeightOfScreen-MENU_HEIGHT)];
+    UITableView *wangQiTable=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, WidthOfScreen, HeightOfScreen-MENU_HEIGHT-10-64)];
     wangQiTable.delegate=self;
     wangQiTable.dataSource=self;
     wangQiTable.separatorStyle=NO;

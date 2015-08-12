@@ -24,8 +24,21 @@
 {
     _infoDict = infoDict;
     _titleLable.text = [_infoDict objectForKey:@"title"];
-    _fromLable.text = [_infoDict objectForKey:@"source"];
-//    _cateLable.text = [_infoDict objectForKey:@"type"];
+    if ([[_infoDict objectForKey:@"type"] isEqual:[NSNull null]]) {
+        _cateLable.text = @"类目: 暂无";
+    }else{
+        _cateLable.text = [NSString stringWithFormat:@"类目: %@",[_infoDict objectForKey:@"type"]];
+    }
+    if ([[_infoDict objectForKey:@"articletype"] integerValue] == 0)
+    {
+        // 文章 显示作者
+        _fromLable.text = [NSString stringWithFormat:@"作者: %@",[_infoDict objectForKey:@"author"]];
+    }
+    else
+    {
+        // 技术专栏 显示类目
+        _fromLable.text = [NSString stringWithFormat:@"发布时间: %@",[_infoDict objectForKey:@"releasetime"]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

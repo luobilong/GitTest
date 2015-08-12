@@ -16,5 +16,6 @@
 //@property (nonatomic,strong) NSDictionary *moreArticalDict;
 
 @property (nonatomic,copy) NSString *typeId;
+@property (nonatomic,copy) NSString *typeTitle;
 
 @end

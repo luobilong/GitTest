@@ -341,7 +341,11 @@
         }
         if ([[dict objectForKey:@"company"] length]>2)
         {
-            cell.qKLabel.text = [dict objectForKey:@"company"];//暂时公司
+            cell.qKLabel.text = [NSString stringWithFormat:@"企业：%@",[dict objectForKey:@"company"]];
+        }
+        if ([dict objectForKey:@"updatetime"] != nil)
+        {
+            cell.updatetimeLabel.text = [NSString stringWithFormat:@"更新时间：%@",[dict objectForKey:@"updatetime"]];
         }
         if ([dict objectForKey:@"seenum"] != nil)
         {

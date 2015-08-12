@@ -41,80 +41,100 @@
 
 - (IBAction)QQButtonClicked:(id)sender
 {
-    // QQ
-    NSString *url = _shareUrl;
-    //分享图预览图URL地址
-    NSString *previewImageUrl = @"wangqi.png";
-    QQApiNewsObject *newsObj = [QQApiNewsObject
-                                objectWithURL:[NSURL URLWithString:url]
-                                title: _shareTitle
-                                description:@"description"
-                                previewImageURL:[NSURL URLWithString:previewImageUrl]];
-    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
-    //将内容分享到qq
-    QQApiSendResultCode sent = [QQApiInterface sendReq:req];
-    [self tapClicked:sender];
+    if ([QQApi isQQInstalled]) {
+        // QQ
+        NSString *url = _shareUrl;
+        //分享图预览图URL地址
+        NSString *previewImageUrl = @"wangqi.png";
+        QQApiNewsObject *newsObj = [QQApiNewsObject
+                                    objectWithURL:[NSURL URLWithString:url]
+                                    title: _shareTitle
+                                    description:@"description"
+                                    previewImageURL:[NSURL URLWithString:previewImageUrl]];
+        SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
+        //将内容分享到qq
+        QQApiSendResultCode sent = [QQApiInterface sendReq:req];
+        [self tapClicked:sender];
+    }else{
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先安装QQ" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alter show];
+    }
 }
 
 - (IBAction)QzoneButtonClicked:(id)sender
 {
-    // Qzone 空间
-    NSString *url = _shareUrl;
-    //分享图预览图URL地址
-    NSString *previewImageUrl = @"wangqi.png";
-    QQApiNewsObject *newsObj = [QQApiNewsObject
-                                objectWithURL:[NSURL URLWithString:url]
-                                title: _shareTitle
-                                description:@"description"
-                                previewImageURL:[NSURL URLWithString:previewImageUrl]];
-    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
-    //    将内容分享到qzone
-    QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
-    //    [self.tencentAuth logout:self];登出
-    [self tapClicked:sender];
+    if ([QQApi isQQInstalled]) {
+        // Qzone 空间
+        NSString *url = _shareUrl;
+        //分享图预览图URL地址
+        NSString *previewImageUrl = @"wangqi.png";
+        QQApiNewsObject *newsObj = [QQApiNewsObject
+                                    objectWithURL:[NSURL URLWithString:url]
+                                    title: _shareTitle
+                                    description:@"description"
+                                    previewImageURL:[NSURL URLWithString:previewImageUrl]];
+        SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
+        //    将内容分享到qzone
+        QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
+        //    [self.tencentAuth logout:self];登出
+        [self tapClicked:sender];
+    }else{
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先安装QQ" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alter show];
+    }
 }
 
 - (IBAction)WeChatButtonClicked:(id)sender
 {
-    // 微信
-    WXMediaMessage *message = [WXMediaMessage message];
-    message.title = _shareTitle;
-    message.description = @"bbbbbbbb";
-    [message setThumbImage:[UIImage imageNamed:@"wangqi.png"]];
+    if ([WXApi isWXAppInstalled]) {
+        // 微信
+        WXMediaMessage *message = [WXMediaMessage message];
+        message.title = _shareTitle;
+        message.description = @"微信分享";
+        [message setThumbImage:[UIImage imageNamed:@"wangqi.png"]];
 
-    WXWebpageObject *ext = [WXWebpageObject object];
-    ext.webpageUrl = _shareUrl;
+        WXWebpageObject *ext = [WXWebpageObject object];
+        ext.webpageUrl = _shareUrl;
 
-    message.mediaObject = ext;
+        message.mediaObject = ext;
 
-    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-    req.bText = NO;
-    req.message = message;
-    req.scene = WXSceneSession;
-    
-    [WXApi sendReq:req];
-    [self tapClicked:sender];
+        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+        req.bText = NO;
+        req.message = message;
+        req.scene = WXSceneSession;
+        
+        [WXApi sendReq:req];
+        [self tapClicked:sender];
+    }else{
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alter show];
+    }
 }
 - (IBAction)momentsButtonClicked:(id)sender
 {
-    // 朋友圈
-    WXMediaMessage *message = [WXMediaMessage message];
-    message.title = _shareTitle;
-    message.description = @"bbbbbbbb";
-    [message setThumbImage:[UIImage imageNamed:@"wangqi.png"]];
-    
-    WXWebpageObject *ext = [WXWebpageObject object];
-    ext.webpageUrl = _shareUrl;
-    
-    message.mediaObject = ext;
-    
-    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-    req.bText = NO;
-    req.message = message;
-    req.scene = WXSceneTimeline;
-    
-    [WXApi sendReq:req];
-    [self tapClicked:sender];
+    if ([WXApi isWXAppInstalled]) {
+        // 朋友圈
+        WXMediaMessage *message = [WXMediaMessage message];
+        message.title = _shareTitle;
+        message.description = @"朋友圈分享";
+        [message setThumbImage:[UIImage imageNamed:@"wangqi.png"]];
+        
+        WXWebpageObject *ext = [WXWebpageObject object];
+        ext.webpageUrl = _shareUrl;
+        
+        message.mediaObject = ext;
+        
+        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+        req.bText = NO;
+        req.message = message;
+        req.scene = WXSceneTimeline;
+        
+        [WXApi sendReq:req];
+        [self tapClicked:sender];
+    }else{
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alter show];
+    }
 }
 
 - (IBAction)EMailButtonClicked:(id)sender

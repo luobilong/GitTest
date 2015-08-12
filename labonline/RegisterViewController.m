@@ -28,6 +28,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // 添加手势 返回上一页
+    _nickName.delegate=self;
+    _username.delegate=self;
+    _password.delegate=self;
+    _email.delegate=self;
+    _phone.delegate=self;
     
     UISwipeGestureRecognizer *left = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(backToPrePage)];
     left.direction = UISwipeGestureRecognizerDirectionDown;
@@ -60,8 +65,15 @@
     NSString *nickname=_nickName.text;
     NSString *phone=_phone.text;
     NSString *email=_email.text;
+    /*
+     此处判断用户是否设置昵称 若未设置 将用户名设置为昵称
+     */
+    if (![_nickName.text length])
+    {
+        nickname = _username.text;
+    }
 
-    if (username.length==0||password.length==0||nickname.length == 0||phone.length == 0||email.length == 0) {
+    if (username.length==0||password.length==0) {
 //        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"登录" message:@"用户名密码不能为空" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 //        [alert show];
         
@@ -82,10 +94,17 @@
                 [userDe setObject:username forKey:@"userName"];
                 [userDe setObject:password forKey:@"password"];
                 [userDe setObject:[userInfo objectForKey:@"id"] forKey:@"id"];
-                [userDe setObject:[userInfo objectForKey:@"nickname"] forKey:@"nickname"];
-                [userDe setObject:[userInfo objectForKey:@"phone"] forKey:@"phone"];
-                [userDe setObject:[userInfo objectForKey:@"email"] forKey:@"email"];
+                if (nickname.length>0) {
+                    [userDe setObject:[userInfo objectForKey:@"nickname"] forKey:@"nickname"];
+                }
+                if (phone.length>0) {
+                    [userDe setObject:[userInfo objectForKey:@"phone"] forKey:@"phone"];
+                }
+                if (email.length>0) {
+                    [userDe setObject:[userInfo objectForKey:@"email"] forKey:@"email"];
+                }
                 [userDe setObject:[userInfo objectForKey:@"icon"] forKey:@"icon"];
+
                 [userDe synchronize];
                 
                 //            [self presentViewController:_sideViewController animated:YES completion:nil];
@@ -115,5 +134,10 @@
 //            NSLog(@"请求失败");
         }];
     }
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end

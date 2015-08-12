@@ -76,7 +76,17 @@
     _timeLable.text = [_evaluDict objectForKey:@"created_at"];
     NSDictionary *articalDic = [_evaluDict objectForKey:@"articleinfo"];
     _workTitleLable.text = [articalDic objectForKey:@"title"];
-    _fromLable.text = [articalDic objectForKey:@"magazinename"];
+//    _fromLable.text = [articalDic objectForKey:@"magazinename"];
+    if ([[articalDic objectForKey:@"articletype"] integerValue] == 0)
+    {
+        // 文章 显示作者
+        _fromLable.text = [NSString stringWithFormat:@"作者: %@",[articalDic objectForKey:@"author"]];
+    }
+    else
+    {
+        // 技术专栏 显示类目
+        _fromLable.text = [NSString stringWithFormat:@"发布时间: %@",[articalDic objectForKey:@"releasetime"]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

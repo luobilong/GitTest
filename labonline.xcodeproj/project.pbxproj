@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040C2DE11B70A39F007F067B /* EJTListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040C2DE01B70A39F007F067B /* EJTListCell.xib */; };
 		042C46741AC2815300D36C8F /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042C46731AC2815300D36C8F /* MenuViewController.m */; };
 		042C46791AC2976200D36C8F /* WangQiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042C46781AC2976200D36C8F /* WangQiCell.m */; };
 		042C467B1AC297F600D36C8F /* wangqi.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C467A1AC297F600D36C8F /* wangqi.png */; };
@@ -238,7 +239,6 @@
 		FDC430F11AD673DA006AC165 /* UserCallBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC430F01AD673DA006AC165 /* UserCallBackViewController.m */; };
 		FDC431081AD687F2006AC165 /* 人人.png in Resources */ = {isa = PBXBuildFile; fileRef = FDC431021AD687F2006AC165 /* 人人.png */; };
 		FDDF61781AF0EC9900725F23 /* EJTListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDF61761AF0EC9900725F23 /* EJTListCell.m */; };
-		FDDF61791AF0EC9900725F23 /* EJTListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDDF61771AF0EC9900725F23 /* EJTListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,6 +252,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040C2DE01B70A39F007F067B /* EJTListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EJTListCell.xib; sourceTree = "<group>"; };
 		042C46721AC2815300D36C8F /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		042C46731AC2815300D36C8F /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		042C46771AC2976200D36C8F /* WangQiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WangQiCell.h; sourceTree = "<group>"; };
@@ -583,7 +584,6 @@
 		FDC431021AD687F2006AC165 /* 人人.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人人.png"; sourceTree = "<group>"; };
 		FDDF61751AF0EC9900725F23 /* EJTListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJTListCell.h; sourceTree = "<group>"; };
 		FDDF61761AF0EC9900725F23 /* EJTListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJTListCell.m; sourceTree = "<group>"; };
-		FDDF61771AF0EC9900725F23 /* EJTListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EJTListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -943,7 +943,7 @@
 				FDB6737F1AEF850F0013E9A1 /* MenuButton.m */,
 				FDDF61751AF0EC9900725F23 /* EJTListCell.h */,
 				FDDF61761AF0EC9900725F23 /* EJTListCell.m */,
-				FDDF61771AF0EC9900725F23 /* EJTListCell.xib */,
+				040C2DE01B70A39F007F067B /* EJTListCell.xib */,
 				FD71F5E31AFB0D6400E2ACDF /* MenuCell.h */,
 				FD71F5E41AFB0D6400E2ACDF /* MenuCell.m */,
 				FD71F5E61AFB0D7600E2ACDF /* MenuCell.xib */,
@@ -1479,7 +1479,6 @@
 				0436E1A51ADD05FE00AF692B /* 4_05.png in Resources */,
 				FD47C8201AC53A3300846AC9 /* JSZLEvaluationCell.xib in Resources */,
 				FD65F4CA1AFC563B00A14062 /* productCollection.png in Resources */,
-				FDDF61791AF0EC9900725F23 /* EJTListCell.xib in Resources */,
 				FD9392071AE637C700B4F1EE /* LoginView.xib in Resources */,
 				FD47C8121AC524FB00846AC9 /* 收藏.png in Resources */,
 				04341AD31AF087EB00725496 /* icon180.png in Resources */,
@@ -1591,6 +1590,7 @@
 				043C77321AD4F15D00B0DEAC /* shurukuang_05.png in Resources */,
 				FD8AE3271ACE67A900A4A5B6 /* MainNewView.xib in Resources */,
 				FD558D5F1AC4098F00DA42FF /* blueArrow@2x.png in Resources */,
+				040C2DE11B70A39F007F067B /* EJTListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

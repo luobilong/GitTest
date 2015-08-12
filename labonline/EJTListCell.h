@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *qKLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yLCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *updatetimeLabel;
 
 @end

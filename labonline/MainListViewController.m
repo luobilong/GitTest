@@ -62,7 +62,7 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
 //    _listArray = @[@"心脑血管疾病预防",@"宝洁医疗诊断相机设计",@"医学世界",@"心脑血管疾病预防"];
-    _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-10) style:UITableViewStylePlain];
+    _listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-10-64) style:UITableViewStylePlain];
     _listTableView.delegate = self;
     _listTableView.dataSource = self;
     _listTableView.showsVerticalScrollIndicator = NO;

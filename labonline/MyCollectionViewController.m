@@ -131,6 +131,7 @@
  
     // 获取收藏列表
     _reloading = NO;
+//    NSLog(@"%@",[NSString stringWithFormat:@"%@?userid=%@",kMyCollectionUrlString,_userId]);
     [self requestDataWithUrlString:[NSString stringWithFormat:@"%@?userid=%@",kMyCollectionUrlString,_userId]];
     [self createRefreshView];
 }
@@ -161,6 +162,7 @@
 - (void)requestDataWithUrlString:(NSString *)urlString
 {
     _netRequesting = YES;
+//    NSLog(@"%@",urlString);
     [self.view addLoadingViewInSuperView:self.view andTarget:self];
     NetManager *netManager = [NetManager getShareManager];
     netManager.delegate = self;
@@ -177,10 +179,6 @@
         [self stopRefresh];
     }
      [self.view removeLoadingVIewInView:self.view andTarget:self];
-//    else
-//    {
-//        [self.view removeLoadingVIewInView:self.view andTarget:self];
-//    }
     if (_deleteCollection)
     {
         _deleteCollection = NO;
@@ -250,6 +248,7 @@
 {
     if (tableView.tag == kMyCollectionTableViewTag)
     {
+        // 文章收藏cell
         static NSString *cellIdentifer = @"MyCollectionCell";
         MyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifer];
         if (cell == nil)
@@ -260,11 +259,15 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.cellIndex = indexPath.row;
+        /*
+                进入MyCollectionCell 赋值  判断是否显示作者 详情进入cell 页面
+         */
         cell.infoDict = [_collectionArray objectAtIndex:indexPath.row];
         return cell;
     }
     else
     {
+        // 产品收藏cell
         static NSString *cellId = @"ProductCollectionCell";
         ProductCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (cell == nil)
@@ -273,7 +276,7 @@
         }
         NSDictionary *dict = [_productArray objectAtIndex:indexPath.row];
         cell.productTitleLabel.text = [dict objectForKey:@"producttitle"];
-        cell.productDetailLabel.text = [dict objectForKey:@"company"];
+        cell.productDetailLabel.text = [NSString stringWithFormat:@"企业: %@",[dict objectForKey:@"company"]];
         [cell.productImgV setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"producticon"]] placeholderImage:[UIImage imageNamed:@"productCollection.png"]];
         [cell.productRemoveButton addTarget:self action:@selector(productRemoveButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         cell.productRemoveButton.tag = indexPath.row+kProductRemoveButtonTag;

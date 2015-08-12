@@ -113,7 +113,14 @@
         if (netManager.downLoadData)
         {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:netManager.downLoadData options:0 error:nil];
-            title = [dict objectForKey:@"remark"];
+            int ri=[[dict objectForKey:@"respCode"] integerValue];
+            if (ri==1000) {
+                title = @"收藏成功";
+            }else if(ri==1001){
+                title = [dict objectForKey:@"remark"];
+            }else{
+                title = @"收藏失败";
+            }
         }
         else
         {

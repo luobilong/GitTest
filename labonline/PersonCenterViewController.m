@@ -45,7 +45,7 @@
     [super viewDidLoad];
     
     // 基本设置
-    self.title = @"个人中心";
+    self.title = @"用户中心";
     self.view.backgroundColor =[UIColor whiteColor];
     //界面调整
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)

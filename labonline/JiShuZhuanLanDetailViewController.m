@@ -445,6 +445,10 @@
     darkV.tag = 11223344;
     [self.view addSubview:darkV];
     
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapDarkView:)];
+    [darkV addGestureRecognizer:tapGes];
+
+    
     ShareView *shareV = [[[NSBundle mainBundle]loadNibNamed:@"ShareView" owner:self options:0] lastObject];
     shareV.frame = CGRectMake(0, kScreenHeight-220-64, kScreenWidth, 220);
     shareV.backgroundColor = [UIColor colorWithWhite:248/255.0 alpha:1];
@@ -452,8 +456,16 @@
     shareV.action = @selector(shareCallBack:);
     shareV.shareTitle=_titleStr;
     shareV.shareUrl=_urlstring;
+    shareV.tag=11223345;
     [self.view addSubview:shareV];
 }
+- (void)tapDarkView:(UITapGestureRecognizer *)tap
+{
+    [tap.view removeFromSuperview];
+    UIView *darkV = [self.view viewWithTag:11223345];
+    [darkV removeFromSuperview];
+}
+
 - (void)shareCallBack:(id)sender
 {
 //    int shareTag=((UIButton *)sender).tag;//有可能不是按钮

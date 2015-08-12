@@ -145,7 +145,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:216/255.0 green:0 blue:0 alpha:1]}];
     self.view.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];
     self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1];
-    self.title = @"医检在线";
+    self.title = @"临床实验室";
     
     //在导航视图底添加分割线
     UIView *navDividingLine = [[UIView alloc] init];
@@ -382,12 +382,13 @@
 #pragma mark - 进入技术专栏界面
 - (void)enterJSZLVireController:(JSZLCateView *)jSZLCateView
 {
-//    NSLog(@"进入技术专栏界面");
+//    NSLog(@"%@",[[jSZLCateView.cateDataArray objectAtIndex:jSZLCateView.selectedIndex] objectForKey:@"columnname"]);
     if (jSZLCateView.enterMoreVC)
     {
         // 更多界面
         JiShuZhuanLanMoreViewController *moreVC = [[JiShuZhuanLanMoreViewController alloc]init];
         moreVC.typeId = [[jSZLCateView.cateDataArray objectAtIndex:jSZLCateView.selectedIndex] objectForKey:@"id"];
+        moreVC.typeTitle=[[jSZLCateView.cateDataArray objectAtIndex:jSZLCateView.selectedIndex] objectForKey:@"columnname"];
 //        NSLog(@"%@",moreVC.typeId);
         [self.navigationController pushViewController:moreVC animated:YES];
     }
